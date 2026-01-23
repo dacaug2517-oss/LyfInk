@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 export default function BloodBankLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -239,7 +240,7 @@ export default function BloodBankLogin() {
 
                   <div className="text-center">
                     <span className="register-text">New user? </span>
-                    <a href="#register" className="register-link">
+                    <a href="DonorRegister.jsx" className="register-link">
                       Register here
                     </a>
                   </div>

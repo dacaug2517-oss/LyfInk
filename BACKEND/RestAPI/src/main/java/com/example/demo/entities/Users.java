@@ -28,7 +28,7 @@ public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int userid;
+	Integer userid;
 	String password;
 	String firstname;
 	String lastname;
@@ -47,6 +47,7 @@ public class Users {
 	@ManyToOne
 	@JoinColumn(name="rid")
 	Role rid;
+	
 	String security_question;
 	String security_answer;
 	Date created_at;

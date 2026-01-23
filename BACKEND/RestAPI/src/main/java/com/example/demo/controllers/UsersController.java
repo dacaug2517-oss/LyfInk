@@ -10,22 +10,22 @@ import com.example.demo.entities.Users;
 import com.example.demo.services.UsersService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 @CrossOrigin(origins = "*") 
 public class UsersController {
 
     @Autowired
     private UsersService usersService;
 
-    // Register User
-    @PostMapping("/register")
-    public ResponseEntity<Users> registerUser(@RequestBody Users user) {
-        Users savedUser = usersService.saveUser(user);
-        return ResponseEntity.ok(savedUser);
-    }
+     //Register User
+//    @PostMapping("/register")
+//    public ResponseEntity<Users> registerUser(@RequestBody Users user) {
+//        Users savedUser = usersService.saveUser(user);
+//        return ResponseEntity.ok(savedUser);
+//    }
 
     // Get All Users
-    @GetMapping
+    @GetMapping("/getall")
     public ResponseEntity<List<Users>> getAllUsers() {
         List<Users> users = usersService.getAllUsers();
         return ResponseEntity.ok(users);
