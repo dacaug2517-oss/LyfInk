@@ -25,6 +25,10 @@ public class UsersService {
         return usersRepository.findAll();
     }
 
+    public Users loginUser(String email, String password) {
+        return usersRepository.findByEmailAndPassword(email, password);
+    }
+
 //    //  Get User by ID
 //    public Users getUserById(Integer id) {
 //        Optional<Users> userOpt = usersRepository.findById(id);

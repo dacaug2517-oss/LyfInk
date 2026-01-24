@@ -10,7 +10,7 @@ import com.example.demo.entities.Users;
 import com.example.demo.services.UsersService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @CrossOrigin(origins = "*") 
 public class UsersController {
 
@@ -18,11 +18,11 @@ public class UsersController {
     private UsersService usersService;
 
      //Register User
-//    @PostMapping("/register")
-//    public ResponseEntity<Users> registerUser(@RequestBody Users user) {
-//        Users savedUser = usersService.saveUser(user);
-//        return ResponseEntity.ok(savedUser);
-//    }
+    @PostMapping("/register")
+    public ResponseEntity<Users> registerUser(@RequestBody Users user) {
+        Users savedUser = usersService.saveUser(user);
+        return ResponseEntity.ok(savedUser);
+    }
 
     // Get All Users
     @GetMapping("/getall")

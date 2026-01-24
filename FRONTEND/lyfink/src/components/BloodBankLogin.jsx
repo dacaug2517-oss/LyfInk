@@ -1,13 +1,37 @@
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
+import { loginUser } from "../services/UserLogin"; 
 
 export default function BloodBankLogin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  //Login Handler Connected to DB
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Login attempted with:', { email, password });
+
+    const loginData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      //Call Spring Boot Login API
+      const response = await loginUser(loginData);
+
+      alert("Login Successful");
+
+      console.log("Logged User:", response.data);
+
+      // Store User Details (Optional)
+      localStorage.setItem("user", JSON.stringify(response.data));
+
+      //Redirect After Login
+      window.location.href = "/dashboard";
+
+    } catch (error) {
+      console.error("Login Error:", error);
+      alert("Invalid Email or Password");
+    }
   };
 
   return (
@@ -16,6 +40,7 @@ export default function BloodBankLogin() {
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
         rel="stylesheet"
       />
+
       <style>{`
         .login-container {
           min-height: 100vh;
@@ -39,49 +64,21 @@ export default function BloodBankLogin() {
           background: linear-gradient(135deg, #e63946 0%, #f77f8e 100%);
           color: white;
           padding: 1rem;
-          position: relative;
         }
 
         img {
-            width: 300px;
-            height: 200px;
-        }
-
-
-        .left-content {
-          position: relative;
-          z-index: 2;
+          width: 300px;
+          height: 200px;
         }
 
         .main-title {
           font-size: 3rem;
           font-weight: bold;
-          margin-bottom: 1rem;
         }
 
         .subtitle {
           font-size: 1.25rem;
           margin-bottom: 3rem;
-        }
-
-        .illustration-container {
-          margin-top: 3rem;
-        }
-
-        .illustration {
-          max-width: 500px;
-          filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
-        }
-
-        .decorative-wave {
-          position: absolute;
-          top: 0;
-          right: -50px;
-          width: 200px;
-          height: 100%;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 50% 0 0 50%;
-          transform: scaleX(1.5);
         }
 
         .right-section {
@@ -92,43 +89,8 @@ export default function BloodBankLogin() {
         }
 
         .signin-title {
-          margin-bottom: 2rem;
           font-weight: bold;
           color: #e63946;
-        }
-
-        .title-underline {
-          width: 60px;
-          height: 3px;
-          background-color: #e63946;
-          margin-top: 10px;
-        }
-
-        .form-label {
-          font-weight: 600;
-          color: #6c757d;
-          margin-bottom: 0.5rem;
-        }
-
-        .input-icon {
-          color: #adb5bd;
-        }
-
-        .input-group-text {
-          background-color: white;
-          border-right: none;
-        }
-
-        .form-control {
-          padding: 12px;
-          border-color: #dee2e6;
-          border-left: none;
-          padding-left: 0;
-        }
-
-        .form-control:focus {
-          border-color: #e63946;
-          box-shadow: none;
         }
 
         .login-btn {
@@ -140,113 +102,87 @@ export default function BloodBankLogin() {
           font-weight: 600;
           padding: 12px;
           color: white;
-          transition: all 0.3s;
         }
 
         .login-btn:hover {
           background-color: #d62839;
         }
 
-        .register-text {
-          color: #6c757d;
-        }
-
         .register-link {
           color: #e63946;
-          text-decoration: none;
           font-weight: 600;
-        }
-
-        .register-link:hover {
-          text-decoration: underline;
-        }
-
-        @media (max-width: 991px) {
-          .main-title {
-            font-size: 2rem;
-          }
-          
-          .illustration {
-            max-width: 100%;
-          }
+          text-decoration: none;
         }
       `}</style>
 
       <div className="login-container">
         <div className="container">
           <div className="row g-0 login-card">
+
             {/* Left Section */}
             <div className="col-lg-7 left-section">
-              <div className="left-content">
-                <h1 className="main-title">Blood Bank System</h1>
-                <p className="subtitle">Donate Blood. Save Lives.</p>
-                
-                <div className="illustration-container">
-                  <img 
-                    src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg"
-                    alt="Blood donation illustration"
-                    className="img-fluid illustration"
-                  />
-                </div>
-              </div>
-              
-              <div className="decorative-wave"></div>
+              <h1 className="main-title">Blood Bank System</h1>
+              <p className="subtitle">Donate Blood. Save Lives.</p>
+
+              <img
+                src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg"
+                alt="Blood donation illustration"
+                className="img-fluid"
+              />
             </div>
 
-            {/* Right Section - Sign In Form */}
+            {/* Right Section */}
             <div className="col-lg-5 right-section">
               <div className="w-100">
-                <h2 className="signin-title">
-                  Sign In
-                  <div className="title-underline"></div>
-                </h2>
 
-                <div>
+                <h2 className="signin-title mb-4">Sign In</h2>
+
+                {/*FORM SUBMIT*/}
+                <form onSubmit={handleLogin}>
+
+                  {/* Email */}
                   <div className="mb-4">
                     <label className="form-label">Email</label>
-                    <div className="input-group">
-                      <span className="input-group-text">
-                        <span className="input-icon">✉</span>
-                      </span>
-                      <input
-                        type="email"
-                        className="form-control"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="Enter Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
                   </div>
 
+                  {/* Password */}
                   <div className="mb-4">
                     <label className="form-label">Password</label>
-                    <div className="input-group">
-                      <span className="input-group-text">
-                        <span className="input-icon">🔒</span>
-                      </span>
-                      <input
-                        type="password"
-                        className="form-control"
-                        placeholder="••••••"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="Enter Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
                   </div>
 
-                  <button onClick={handleLogin} className="login-btn mb-4">
+                  {/* Button */}
+                  <button type="submit" className="login-btn mb-4">
                     Login
                   </button>
 
                   <div className="text-center">
-                    <span className="register-text">New user? </span>
-                    <a href="DonorRegister.jsx" className="register-link">
+                    <span>New user? </span>
+                    <a href="/register" className="register-link">
                       Register here
                     </a>
                   </div>
-                </div>
+
+                </form>
+
               </div>
             </div>
+
           </div>
         </div>
       </div>

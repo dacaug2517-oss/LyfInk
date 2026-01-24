@@ -1,146 +1,198 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../style/DonorRegisterStyle.css";
+import { registerUser } from "../services/UserService";
 
-export default function DonorRegister() {
+export default function BloodBankRegister() {
+
   const [formData, setFormData] = useState({
-    // firstname: '',
-    // lastname: '',
-    // email: '',
-    // password: '',
-    // confirmPassword: '',
-    // mobno: '',
-    // address: '',
-    // stateid: '',
-    // cityid: '',
-    // rid: '',
-    // security_question: '',
-    // security_answer: ''
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    mobno: "",
+    address: "",
+    stateid: "",
+    cityid: "",
+    rid: "",
+    security_question: "",
+    security_answer: "",
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  // ✅ States From Database
+  const [states, setStates] = useState([]);
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log('Registration data:', formData);
-  // };
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/states/all")
+      .then((res) => setStates(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+  const [cities, setCities] = useState([]);
 
-
-
-
-
-
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  // Basic frontend validation
-  if (formData.password !== formData.confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
-
-  try {
-    const response = await axios.post(
-      "http://localhost:8080/api/users/register",  // 🔁 your Spring Boot endpoint
-      formData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    console.log("Server response:", response.data);
-    alert("Registration successful!");
-
-    // Optional: clear form after success
-    setFormData({
-      firstname: "",
-      lastname: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      mobno: "",
-      address: "",
-      stateid: "",
-      cityid: "",
-      rid: "",
-      security_question: "",
-      security_answer: "",
-    });
-
-  } catch (error) {
-    console.error("Registration error:", error);
-    alert(
-      error.response?.data?.message || "Registration failed. Try again."
-    );
-  }
-};
+  // Fetch cities when state changes
+  useEffect(() => {
+    if (formData.stateid !== "") {
+      axios
+        .get(`http://localhost:8080/api/cities/bystate/${formData.stateid}`)
+        .then((res) => {
+          setCities(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [formData.stateid]);
 
 
-
-
-
-
-
-
-
-
-
-  const states = [
-    { id: 1, name: 'Maharashtra' },
-    { id: 2, name: 'Karnataka' },
-    { id: 3, name: 'Tamil Nadu' },
-    { id: 4, name: 'Delhi' }
-  ];
-
-  const cities = [
-    { id: 1, name: 'Mumbai' },
-    { id: 2, name: 'Pune' },
-    { id: 3, name: 'Bangalore' },
-    { id: 4, name: 'Chennai' }
-  ];
 
   const roles = [
-    { id: 1, name: 'Donor' },
-    { id: 2, name: 'Hospital or Blood Bank' },
-    { id: 3, name: 'Admin' }
+    { id: 1, name: "Donor" },
+    { id: 2, name: "Recipient" },
+    { id: 3, name: "Staff" },
   ];
 
   const securityQuestions = [
     "What is your mother's maiden name?",
-    'What was the name of your first pet?',
-    'What city were you born in?',
-    'What is your favorite color?'
+    "What was the name of your first pet?",
+    "What city were you born in?",
+    "What is your favorite color?",
   ];
+
+  // Handle Change
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle Submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Password Validation
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // ✅ Payload for Spring Boot
+    const userPayload = {
+      firstname: formData.firstname,
+      lastname: formData.lastname,
+      email: formData.email,
+      password: formData.password,
+      mobno: formData.mobno,
+      address: formData.address,
+
+      // ManyToOne Mapping
+      stateid: { stateid: formData.stateid },
+      cityid: { cityid: formData.cityid },
+      rid: { rid: formData.rid },
+
+      security_question: formData.security_question,
+      security_answer: formData.security_answer,
+    };
+
+    try {
+      const response = await registerUser(userPayload);
+
+      alert("Registration Successful!!!");
+      console.log("Saved User:", response.data);
+
+      // Reset Form
+      setFormData({
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        mobno: "",
+        address: "",
+        stateid: "",
+        cityid: "",
+        rid: "",
+        security_question: "",
+        security_answer: "",
+      });
+    } catch (error) {
+      console.error("Registration Failed:", error);
+      alert("Registration Failed!!!");
+    }
+  };
 
   return (
     <>
+      {/* Bootstrap */}
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
         rel="stylesheet"
       />
 
+      {/* UI Styling */}
+      <style>{`
+        .register-container {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+          padding: 20px;
+        }
 
-      
+        .register-card {
+          max-width: 1200px;
+          width: 100%;
+          background-color: #fff;
+          border-radius: 25px;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+          overflow: hidden;
+          display: flex;
+          height: 90vh;
+        }
+
+        .left-section {
+          background: linear-gradient(135deg, #e63946 0%, #f77f8e 100%);
+          color: white;
+          padding: 2.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
+        .right-section {
+          background-color: #fafafa;
+          padding: 2.5rem;
+          overflow-y: auto;
+        }
+
+        .register-btn {
+          width: 100%;
+          background-color: #e63946;
+          border: none;
+          border-radius: 8px;
+          font-size: 17px;
+          font-weight: 600;
+          padding: 12px;
+          color: white;
+          margin-top: 1rem;
+        }
+
+        .register-btn:hover {
+          background-color: #d62839;
+        }
+      `}</style>
 
       <div className="register-container">
         <div className="register-card">
 
           {/* Left Section */}
           <div className="col-lg-5 left-section">
-            <h1 className="main-title">Blood Bank System</h1>
-            <p className="subtitle">Donate Blood. Save Lives.</p>
+            <h1>Blood Bank System</h1>
+            <p>Donate Blood. Save Lives.</p>
 
             <img
               src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg"
               alt="Blood donation"
-              className="img-fluid illustration"
+              className="img-fluid"
+              style={{ maxWidth: "300px" }}
             />
 
             <p className="mt-3">Join our community of life-savers today!</p>
@@ -148,133 +200,203 @@ export default function DonorRegister() {
 
           {/* Right Section */}
           <div className="col-lg-7 right-section">
-            <h2 className="register-title">
+            <h2 className="text-center mb-4 text-danger">
               Create Account
-              <div className="title-underline"></div>
             </h2>
 
+            {/* ✅ Form Submit */}
+            <form onSubmit={handleSubmit}>
+              <div className="row">
 
-          <form onSubmit={handleSubmit} method="get"> 
-            <div className="row" >
-              <div className="col-md-6 mb-3">
-                <label className="form-label">
-                  First Name <span className="required">*</span>
-                </label>
-                <input type="text" className="form-control" name="firstname"
-                  value={formData.firstname} onChange={handleChange} required />
-              </div>
+                {/* First Name */}
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">First Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="firstname"
+                    value={formData.firstname}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <div className="col-md-6 mb-3">
-                <label className="form-label">
-                  Last Name <span className="required">*</span>
-                </label>
-                <input type="text" className="form-control" name="lastname"
-                  value={formData.lastname} onChange={handleChange} required />
-              </div>
+                {/* Last Name */}
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Last Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="lastname"
+                    value={formData.lastname}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <div className="col-md-6 mb-3">
-                <label className="form-label">
-                  Email <span className="required">*</span>
-                </label>
-                <input type="email" className="form-control" name="email"
-                  value={formData.email} onChange={handleChange} required />
-              </div>
+                {/* Email */}
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <div className="col-md-6 mb-3">
-                <label className="form-label">
-                  Mobile Number <span className="required">*</span>
-                </label>
-                <input type="tel" className="form-control" name="mobno"
-                  value={formData.mobno} onChange={handleChange} required />
-              </div>
+                {/* Mobile */}
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Mobile Number</label>
+                  <input
+                    type="tel"
+                    className="form-control"
+                    name="mobno"
+                    value={formData.mobno}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <div className="col-md-6 mb-3">
-                <label className="form-label">
-                  Password <span className="required">*</span>
-                </label>
-                <input type="password" className="form-control" name="password"
-                  value={formData.password} onChange={handleChange} required />
-              </div>
+                {/* Password */}
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <div className="col-md-6 mb-3">
-                <label className="form-label">
-                  Confirm Password <span className="required">*</span>
-                </label>
-                <input type="password" className="form-control" name="confirmPassword"
-                  value={formData.confirmPassword} onChange={handleChange} required />
-              </div>
+                {/* Confirm Password */}
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">Confirm Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <div className="col-12 mb-3">
-                <label className="form-label">
-                  Address <span className="required">*</span>
-                </label>
-                <textarea className="form-control" name="address" rows="2"
-                  value={formData.address} onChange={handleChange} required />
-              </div>
+                {/* Address */}
+                <div className="col-12 mb-3">
+                  <label className="form-label">Address</label>
+                  <textarea
+                    className="form-control"
+                    name="address"
+                    rows="2"
+                    value={formData.address}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <div className="col-md-6 mb-3">
-                <label className="form-label">
-                  State <span className="required">*</span>
-                </label>
-                <select className="form-select" name="stateid"
-                  value={formData.stateid} onChange={handleChange} required>
+                {/* State */}
+                <label className="form-label">State</label>
+                <select
+                  className="form-select"
+                  name="stateid"
+                  value={formData.stateid}
+                  onChange={handleChange}
+                  required
+                >
                   <option value="">Select State</option>
-                  {states.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+
+                  {states.map((s) => (
+                    <option key={s.stateid} value={s.stateid}>
+                      {s.statename}
+                    </option>
+                  ))}
                 </select>
+
+                {/* City */}
+                <div className="col-md-6 mb-3">
+                  <label className="form-label">City</label>
+                  <select
+                    className="form-select"
+                    name="cityid"
+                    value={formData.cityid}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select City</option>
+
+                    {cities.map((c) => (
+                      <option key={c.cityid} value={c.cityid}>
+                        {c.cityname}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Role */}
+                <div className="col-12 mb-3">
+                  <label className="form-label">Register As</label>
+                  <select
+                    className="form-select"
+                    name="rid"
+                    value={formData.rid}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Role</option>
+                    {roles.map((r) => (
+                      <option key={r.id} value={r.id}>
+                        {r.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Security Question */}
+                <div className="col-12 mb-3">
+                  <label className="form-label">Security Question</label>
+                  <select
+                    className="form-select"
+                    name="security_question"
+                    value={formData.security_question}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Question</option>
+                    {securityQuestions.map((q, i) => (
+                      <option key={i} value={q}>
+                        {q}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Security Answer */}
+                <div className="col-12 mb-3">
+                  <label className="form-label">Security Answer</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="security_answer"
+                    value={formData.security_answer}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                {/* Submit */}
+                <div className="col-12">
+                  <button type="submit" className="register-btn">
+                    Register
+                  </button>
+                </div>
+
               </div>
-
-              <div className="col-md-6 mb-3">
-                <label className="form-label">
-                  City <span className="required">*</span>
-                </label>
-                <select className="form-select" name="cityid"
-                  value={formData.cityid} onChange={handleChange} required>
-                  <option value="">Select City</option>
-                  {cities.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                </select>
-              </div>
-
-              <div className="col-12 mb-3">
-                <label className="form-label">
-                  Register As <span className="required">*</span>
-                </label>
-                <select className="form-select" name="rid"
-                  value={formData.rid} onChange={handleChange} required>
-                  <option value="">Select Role</option>
-                  {roles.map(r => <option key={r.id} value={r.id}>{r.name}</option>)}
-                </select>
-              </div>
-
-              <div className="col-12 mb-3">
-                <label className="form-label">
-                  Security Question <span className="required">*</span>
-                </label>
-                <select className="form-select" name="security_question"
-                  value={formData.security_question} onChange={handleChange} required>
-                  <option value="">Select Question</option>
-                  {securityQuestions.map((q, i) => <option key={i} value={q}>{q}</option>)}
-                </select>
-              </div>
-
-              <div className="col-12 mb-3">
-                <label className="form-label">
-                  Security Answer <span className="required">*</span>
-                </label>
-                <input type="text" className="form-control" name="security_answer"
-                  value={formData.security_answer} onChange={handleChange} required />
-              </div>
-            </div>
-           
-
-            <button  type="submit" className="register-btn">
-              Register
-            </button>
-          </form>
-
-            <div className="login-text">
-              Already have an account?{" "}
-              <a href="#login" className="login-link">Login here</a>
-            </div>
+            </form>
           </div>
         </div>
       </div>

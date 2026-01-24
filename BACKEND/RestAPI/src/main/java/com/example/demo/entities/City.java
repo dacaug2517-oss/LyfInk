@@ -1,18 +1,8 @@
 package com.example.demo.entities;
 
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,17 +10,18 @@ import lombok.ToString;
 @Setter
 @ToString
 
-
 @Entity
-@Table(name ="city")
+@Table(name = "city")
 public class City {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int cityid;
-	String cityname;
-	
-	@ManyToOne
-	@JoinColumn(name="stateid")
-	State sid; 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int cityid;
+
+    private String cityname;
+
+    // Foreign Key Column = sid
+    @ManyToOne
+    @JoinColumn(name = "sid")  
+    private State state;
 }

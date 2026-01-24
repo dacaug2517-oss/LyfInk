@@ -9,6 +9,6 @@ import com.example.demo.entities.Users;
 
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer> {
-	
+	Users findByEmailAndPassword(String email, String password);
 	
 }

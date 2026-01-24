@@ -1,6 +1,7 @@
 package com.example.demo.entities;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,6 +51,6 @@ public class Users {
 	
 	String security_question;
 	String security_answer;
-	Date created_at;
+	LocalDateTime created_at;
 	
 }
