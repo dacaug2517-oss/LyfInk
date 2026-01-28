@@ -39,7 +39,7 @@ public class DonorDonations {
 	
 	@ManyToOne
 	@JoinColumn(name="hbid")
-	HBDetails hbid;
+	HbDetails hbid;
 	
 	int units;
 }

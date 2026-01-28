@@ -1,30 +1,21 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Table(name ="blood_component")
+@Table(name = "blood_component")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BloodComponent {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int bcid;
-	String bc_name;
-	int category;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer bcid;
+
+    private String bc_name;
+
+    private int category;
 }

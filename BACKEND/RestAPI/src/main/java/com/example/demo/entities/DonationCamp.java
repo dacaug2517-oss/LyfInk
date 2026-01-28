@@ -34,7 +34,7 @@ public class DonationCamp {
 	
 	@ManyToOne
 	@JoinColumn(name="hbid")
-	HBDetails hbid;
+	HbDetails hbid;
 	
 	String camp_name;
 	String venue;

@@ -1,56 +1,49 @@
 package com.example.demo.entities;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-
 
 @Entity
-@Table(name ="users")
+@Table(name="users")
+@Getter
+@Setter
 public class Users {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer userid;
-	String password;
-	String firstname;
-	String lastname;
-	String email;
-	long mobno;
-	String address;
-	
-	@ManyToOne
-	@JoinColumn(name="stateid")
-	State stateid;
-	
-	@ManyToOne
-	@JoinColumn(name="cityid")
-	City cityid;
-	
-	@ManyToOne
-	@JoinColumn(name="rid")
-	Role rid;
-	
-	String security_question;
-	String security_answer;
-	LocalDateTime created_at;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userid;
+
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String password;
+    private String mobno;
+    private String address;
+
+    private String security_question;
+    private String security_answer;
+
+    // ✅ Role Mapping
+    @ManyToOne
+    @JoinColumn(name="rid")
+    private Role role;
+
+    // ✅ State Mapping
+    @ManyToOne
+    @JoinColumn(name="stateid")
+    private State state;
+
+    // ✅ City Mapping
+    @ManyToOne
+    @JoinColumn(name="cityid")
+    private City city;
+
+    // ✅ Donor Table Mapping
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Donor donor;
+
+    // ✅ HbDetails Table Mapping
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private HbDetails hb;
 }
