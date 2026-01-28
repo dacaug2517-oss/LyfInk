@@ -32,7 +32,7 @@ public class BloodStock {
 	
 	@ManyToOne
 	@JoinColumn(name="hbid")
-	HBDetails hbid;
+	HbDetails hbid;
 	
 	@ManyToOne
 	@JoinColumn(name="bcid")

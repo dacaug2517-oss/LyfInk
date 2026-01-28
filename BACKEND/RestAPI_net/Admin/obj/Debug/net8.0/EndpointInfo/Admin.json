@@ -1,0 +1,745 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Admin",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/system/login": {
+      "post": {
+        "tags": [
+          "System"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/system/register-hb": {
+      "post": {
+        "tags": [
+          "System"
+        ],
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HbDetail"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HbDetail"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HbDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/system/hb-list": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BloodComponent": {
+        "type": "object",
+        "properties": {
+          "bcid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bcName": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bloodRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BloodRequest"
+            },
+            "nullable": true
+          },
+          "bloodStocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BloodStock"
+            },
+            "nullable": true
+          },
+          "donors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Donor"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BloodRequest": {
+        "type": "object",
+        "properties": {
+          "brid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bcid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "requiredby": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "purpose": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "cityid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bc": {
+            "$ref": "#/components/schemas/BloodComponent"
+          },
+          "bloodResponses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BloodResponse"
+            },
+            "nullable": true
+          },
+          "city": {
+            "$ref": "#/components/schemas/City"
+          },
+          "state": {
+            "$ref": "#/components/schemas/State"
+          },
+          "uidNavigation": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BloodResponse": {
+        "type": "object",
+        "properties": {
+          "resid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "brid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comment": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "br": {
+            "$ref": "#/components/schemas/BloodRequest"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BloodStock": {
+        "type": "object",
+        "properties": {
+          "bsid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hbid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bcid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ml": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "expiryDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "bc": {
+            "$ref": "#/components/schemas/BloodComponent"
+          },
+          "hb": {
+            "$ref": "#/components/schemas/HbDetail"
+          }
+        },
+        "additionalProperties": false
+      },
+      "City": {
+        "type": "object",
+        "properties": {
+          "cityid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cityname": {
+            "type": "string",
+            "nullable": true
+          },
+          "sid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "stateid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bloodRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BloodRequest"
+            },
+            "nullable": true
+          },
+          "donationCamps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DonationCamp"
+            },
+            "nullable": true
+          },
+          "sidNavigation": {
+            "$ref": "#/components/schemas/State"
+          },
+          "state": {
+            "$ref": "#/components/schemas/State"
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DonationCamp": {
+        "type": "object",
+        "properties": {
+          "cid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hbid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "campName": {
+            "type": "string",
+            "nullable": true
+          },
+          "venue": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "fromTime": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "toTime": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "contactPerson": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cityid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "city": {
+            "$ref": "#/components/schemas/City"
+          },
+          "hb": {
+            "$ref": "#/components/schemas/HbDetail"
+          },
+          "state": {
+            "$ref": "#/components/schemas/State"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Donor": {
+        "type": "object",
+        "properties": {
+          "did": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "dob": {
+            "type": "string",
+            "format": "date"
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "bcid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "medicalHistory": {
+            "type": "string",
+            "nullable": true
+          },
+          "bc": {
+            "$ref": "#/components/schemas/BloodComponent"
+          },
+          "donorDonations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DonorDonation"
+            },
+            "nullable": true
+          },
+          "uidNavigation": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DonorDonation": {
+        "type": "object",
+        "properties": {
+          "ddid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "did": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "donatedDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "hbid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "units": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "didNavigation": {
+            "$ref": "#/components/schemas/Donor"
+          },
+          "hb": {
+            "$ref": "#/components/schemas/HbDetail"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HbDetail": {
+        "type": "object",
+        "properties": {
+          "hbid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hbName": {
+            "type": "string",
+            "nullable": true
+          },
+          "hbEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "hbPhno": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "regNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "gstNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "uid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "type": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bloodStocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BloodStock"
+            },
+            "nullable": true
+          },
+          "donationCamps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DonationCamp"
+            },
+            "nullable": true
+          },
+          "donorDonations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DonorDonation"
+            },
+            "nullable": true
+          },
+          "uidNavigation": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "rid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rname": {
+            "type": "string",
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "State": {
+        "type": "object",
+        "properties": {
+          "stateid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statename": {
+            "type": "string",
+            "nullable": true
+          },
+          "bloodRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BloodRequest"
+            },
+            "nullable": true
+          },
+          "citySidNavigations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/City"
+            },
+            "nullable": true
+          },
+          "cityStates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/City"
+            },
+            "nullable": true
+          },
+          "donationCamps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DonationCamp"
+            },
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "userid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstname": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastname": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobno": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "cityid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "rid": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "securityQuestion": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityAnswer": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bloodRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BloodRequest"
+            },
+            "nullable": true
+          },
+          "city": {
+            "$ref": "#/components/schemas/City"
+          },
+          "donors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Donor"
+            },
+            "nullable": true
+          },
+          "hbDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HbDetail"
+            },
+            "nullable": true
+          },
+          "ridNavigation": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "state": {
+            "$ref": "#/components/schemas/State"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

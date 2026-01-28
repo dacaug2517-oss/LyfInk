@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project main\\lyfink\\backend\\restapi_net\\admin\\controllers\\adminapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\adminapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project main\\lyfink\\backend\\restapi_net\\admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project main\\lyfink\\backend\\restapi_net\\admin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project main\\lyfink\\backend\\restapi_net\\admin\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project main\\lyfink\\backend\\restapi_net\\admin\\views\\admin\\hbregisterviewmodel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:views\\admin\\hbregisterviewmodel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project main\\lyfink\\backend\\restapi_net\\admin\\admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAA7wC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-27T06:55:10.649Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminApiController.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\AdminApiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AdminApiController.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\AdminApiController.cs",
+              "RelativeToolTip": "Controllers\\AdminApiController.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAA5wBAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-27T06:47:38.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HbRegisterViewModel.cshtml",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Views\\Admin\\HbRegisterViewModel.cshtml",
+              "RelativeDocumentMoniker": "Views\\Admin\\HbRegisterViewModel.cshtml",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Views\\Admin\\HbRegisterViewModel.cshtml",
+              "RelativeToolTip": "Views\\Admin\\HbRegisterViewModel.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-27T06:34:27.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-27T04:59:33.71Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAmwCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-27T04:53:14.577Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Admin.csproj",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Admin.csproj",
+              "RelativeDocumentMoniker": "Admin.csproj",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\PROJECT MAIN\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Admin.csproj",
+              "RelativeToolTip": "Admin.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-27T04:52:02.528Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

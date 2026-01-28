@@ -1,45 +1,28 @@
 package com.example.demo.entities;
 
-import java.sql.Date;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-
 
 @Entity
-@Table(name ="donor")
+@Getter
+@Setter
 public class Donor {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int did;
-	
-	@ManyToOne
-	@JoinColumn(name="uid")
-	Users uid;
-	
-	Date dob;
-	String gender;
-	
-	@ManyToOne
-	@JoinColumn(name="bcid")
-	BloodComponent bcid;
-	
-	String medical_history;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer did;
+
+    private String dob;
+    private String gender;
+    private String medical_history;
+
+    // ✅ Correct Foreign Key Mapping
+    @ManyToOne
+    @JoinColumn(name = "bcid", nullable = false)
+    private BloodComponent bloodComponent;
+
+    @OneToOne
+    @JoinColumn(name = "uid")
+    private Users user;
 }
