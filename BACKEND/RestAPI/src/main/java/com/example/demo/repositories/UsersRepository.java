@@ -5,5 +5,5 @@ import com.example.demo.entities.Users;
 
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 	
-	Users findByEmail(String email); // ✅ Required
+	Users findByEmail(String email);
 }

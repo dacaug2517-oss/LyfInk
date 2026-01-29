@@ -18,10 +18,8 @@
 --
 -- Table structure for table `blood_component`
 --
-
 create database p17_bloodbank;
 use p17_bloodbank;
-
 DROP TABLE IF EXISTS `blood_component`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -223,7 +221,7 @@ CREATE TABLE `donor` (
   KEY `bcid_idx` (`bcid`),
   CONSTRAINT `bcid` FOREIGN KEY (`bcid`) REFERENCES `blood_component` (`bcid`),
   CONSTRAINT `uid` FOREIGN KEY (`uid`) REFERENCES `users` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,6 +230,7 @@ CREATE TABLE `donor` (
 
 LOCK TABLES `donor` WRITE;
 /*!40000 ALTER TABLE `donor` DISABLE KEYS */;
+INSERT INTO `donor` VALUES (1,13,'2002-05-01','Male',1,_binary 'None'),(2,14,'2026-01-08','Male',4,_binary 'asdfghjk,'),(3,17,'2002-12-21','Male',7,_binary 'qwertyuiopolkjhgfds'),(4,18,'2026-01-01','Male',1,_binary 'sdfghjkklasdfghjk'),(5,24,'2026-01-23','Male',7,_binary 'qwsdfvgbhn'),(6,31,'2026-01-04','Male',1,_binary 'qwsedrfgy');
 /*!40000 ALTER TABLE `donor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,16 +274,17 @@ DROP TABLE IF EXISTS `hb_details`;
 CREATE TABLE `hb_details` (
   `hbid` int NOT NULL AUTO_INCREMENT,
   `hb_name` varchar(50) NOT NULL,
-  `hb_email` varchar(20) NOT NULL,
   `hb_phno` bigint NOT NULL,
   `reg_no` varchar(20) NOT NULL,
   `gst_no` varchar(20) NOT NULL,
   `uid` int DEFAULT NULL,
-  `type` int DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `hb_email` varchar(45) DEFAULT NULL,
+  `hb_password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`hbid`),
   KEY `uid_idx` (`uid`),
   CONSTRAINT `userid` FOREIGN KEY (`uid`) REFERENCES `users` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,6 +293,7 @@ CREATE TABLE `hb_details` (
 
 LOCK TABLES `hb_details` WRITE;
 /*!40000 ALTER TABLE `hb_details` DISABLE KEYS */;
+INSERT INTO `hb_details` VALUES (1,'mera hospital',9971459968,'dadawdawdaw','243468348648',16,'Hospital',NULL,NULL),(2,'sxcvbyhwdsoklsaplx ioaskzaidkm,',9971459968,'dadawdawdaw','243468348648',19,'Hospital',NULL,NULL);
 /*!40000 ALTER TABLE `hb_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -372,7 +373,7 @@ CREATE TABLE `users` (
   CONSTRAINT `cityid` FOREIGN KEY (`cityid`) REFERENCES `city` (`cityid`),
   CONSTRAINT `rid` FOREIGN KEY (`rid`) REFERENCES `role` (`rid`),
   CONSTRAINT `stateid` FOREIGN KEY (`stateid`) REFERENCES `state` (`stateid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -381,8 +382,13 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (13,'1234','Manav','Chauhan','manav@gmail.com',9999999999,'Pune',1,2,1,'What is your favorite color?','Red',NULL),(14,'123','Manav','chauhan','manav21dec@gmail.com',9971459968,'00 RAMANANDPATH\nRamanandpath\nLaheriasrai',2,5,1,'What is your mother\'s maiden name?','sdxcfvgbhn',NULL),(16,'123','Manav','chauhan','manav21dec@gmail.com',9971459968,'Vadgaon BK',1,2,2,'What is your mother\'s maiden name?','vdvdvd',NULL),(17,'123','sher','singh','sherhoonmain@123',9192789654,'den',1,2,1,'What was the name of your first pet?','sher',NULL),(18,'123','Manav','chauhan','manav21dec@gmail.com',9971459968,'Vadgaon BK',1,2,1,'What was the name of your first pet?','vdvdvd',NULL),(19,'123','Manav','chauhan','manav21dec@gmail.com',9971459968,'Vadgaon BK',1,2,2,'What was the name of your first pet?','red',NULL),(24,'123','Manav','chauhan','Donor@123',9971459968,'Vadgaon BK',1,2,2,'What is your mother\'s maiden name?','fdxb ',NULL),(27,'123','Manav','chauhan','Admin@123',9971459968,'Vadgaon BK',1,2,1,'What is your mother\'s maiden name?','sher',NULL),(28,'123','Manav','chauhan','manav21dec@gmail.com',9971459968,'Vadgaon BK',1,2,1,'What is your mother\'s maiden name?','fdxb ',NULL),(31,'123','Manav','chauhan','demo@123',9971459968,'Vadgaon BK',1,2,2,'What was the name of your first pet?','red',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'p17_bloodbank'
+--
 
 --
 -- Dumping routines for database 'p17_bloodbank'
@@ -397,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-20 13:49:06
+-- Dump completed on 2026-01-29 16:16:49
