@@ -34,6 +34,7 @@ export default function BloodBankRegister() {
     // ✅ Admin HB Fields
     hb_name: "",
     hb_email: "",
+    hb_password:"",
     hb_phno: "",
     reg_no: "",
     gst_no: "",
@@ -465,7 +466,7 @@ export default function BloodBankRegister() {
                 )}
 
                 {/* ✅ Admin Fields (UNCHANGED FULLY) */}
-                {Number(formData.rid) === 1 && (
+                {Number(formData.rid) === 3 && (
                   <>
                     <h4 className="text-primary">
                       Hospital/BloodBank Details
@@ -496,7 +497,7 @@ export default function BloodBankRegister() {
                       <input
                         type="password"
                         className="form-control"
-                        name="password"
+                        name="hb_password"
                         onChange={handleChange}
                         required
                       />

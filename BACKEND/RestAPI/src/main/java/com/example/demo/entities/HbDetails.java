@@ -21,8 +21,7 @@ public class HbDetails {
     @Column(name="hb_email")
     private String email;
 
-    @Column(name="hb_password")
-    private String password;
+    private String hb_password;
 
     @Column(name="hb_phno")
     private String phone;
