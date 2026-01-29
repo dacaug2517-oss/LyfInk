@@ -1,129 +1,143 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../../style/admin.css";
 
 import InventoryManagement from "./InventoryManagement";
-import BloodRequest from "./BloodRequest";
 import ReportAnalysis from "./ReportAnalysis";
+import HospitalManagement from "./HospitalManagement";
 
 import {
   LayoutDashboard,
   Droplet,
-  FileText,
   BarChart3,
   Settings,
+  Hospital,
   Bell,
 } from "lucide-react";
 
 export default function AdminDashboard() {
-  const [activePage, setActivePage] = useState("donors");
+  const [activePage, setActivePage] = useState("dashboard");
+  const [adminData, setAdminData] = useState(null);
 
-  //LOGOUT FUNCTION
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+
+  // ✅ Fetch Admin Details
+  useEffect(() => {
+    if (storedUser?.userid) {
+      axios
+        .get(`http://localhost:5048/api/User/${storedUser.userid}`)
+        .then((res) => setAdminData(res.data))
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
+  // Logout
   const handleLogout = () => {
-    localStorage.removeItem("user"); // Clear user session
-    window.location.href = "/login"; // Redirect to login page
+    localStorage.removeItem("user");
+    window.location.href = "/login";
   };
 
   return (
     <div className="admin-wrapper">
-      {/* ===== TOP HEADER BAR ===== */}
+      {/* Top Bar */}
       <header className="admin-topbar">
         <div className="admin-logo">
-          <div className="avatar-circle"></div>
-          <h1>Admin Dashboard</h1>
+          <h1>
+            Admin Dashboard -{" "}
+            {adminData ? adminData.firstname : "Loading..."}
+          </h1>
         </div>
 
         <div className="admin-icons">
           <Bell size={20} />
-          <span className="notif-badge">5</span>
+          <span className="notif-badge">3</span>
         </div>
       </header>
 
-      {/* ===== MAIN SECTION ===== */}
+      {/* Main */}
       <div className="admin-main">
-        {/* ===== SIDEBAR ===== */}
+        {/* Sidebar */}
         <aside className="admin-sidebar">
           <button
             className={activePage === "dashboard" ? "nav-btn active" : "nav-btn"}
             onClick={() => setActivePage("dashboard")}
           >
-            <LayoutDashboard size={18} />
-            Dashboard
+            <LayoutDashboard size={18} /> Dashboard
           </button>
 
           <button
-            className={
-              activePage === "inventory" ? "nav-btn active" : "nav-btn"
-            }
+            className={activePage === "hospitals" ? "nav-btn active" : "nav-btn"}
+            onClick={() => setActivePage("hospitals")}
+          >
+            <Hospital size={18} /> Hospitals
+          </button>
+
+          <button
+            className={activePage === "inventory" ? "nav-btn active" : "nav-btn"}
             onClick={() => setActivePage("inventory")}
           >
-            <Droplet size={18} />
-            Inventory Management
-          </button>
-
-          <button
-            className={activePage === "requests" ? "nav-btn active" : "nav-btn"}
-            onClick={() => setActivePage("requests")}
-          >
-            <FileText size={18} />
-            Blood Requests
+            <Droplet size={18} /> Inventory
           </button>
 
           <button
             className={activePage === "reports" ? "nav-btn active" : "nav-btn"}
             onClick={() => setActivePage("reports")}
           >
-            <BarChart3 size={18} />
-            Reports & Analytics
+            <BarChart3 size={18} /> Reports
           </button>
 
-          {/* SETTINGS BUTTON */}
+          {/* Settings */}
           <div className="sidebar-bottom">
             <button
               className={activePage === "settings" ? "nav-btn active" : "nav-btn"}
               onClick={() => setActivePage("settings")}
             >
-              <Settings size={18} />
-              Settings
+              <Settings size={18} /> Settings
             </button>
           </div>
         </aside>
 
-        {/* ===== CONTENT PANEL ===== */}
+        {/* Content */}
         <section className="admin-content">
-          
+          {activePage === "dashboard" && (
+            <div className="page-box">
+              <h2>
+                Welcome {adminData ? adminData.firstname : "Admin"} 👋
+              </h2>
+              <p>Manage Hospitals, Inventory, Reports.</p>
+            </div>
+          )}
 
-          {/* INVENTORY PAGE */}
+          {/* ✅ Hospital Page */}
+          {activePage === "hospitals" && <HospitalManagement />}
+
+          {/* Inventory */}
           {activePage === "inventory" && <InventoryManagement />}
 
-          {/* REQUEST PAGE */}
-          {activePage === "requests" && <BloodRequest />}
-
-          {/* REPORT PAGE */}
+          {/* Reports */}
           {activePage === "reports" && <ReportAnalysis />}
 
-          {/* SETTINGS PAGE */}
+          {/* Settings */}
           {activePage === "settings" && (
             <div className="settings-page">
               <h2>⚙ Admin Settings</h2>
 
-              {/* PROFILE SECTION */}
               <div className="profile-box">
-                <h3>👤 Profile Details</h3>
                 <p>
-                  <b>Name:</b> Admin User
+                  <b>Name:</b>{" "}
+                  {adminData
+                    ? adminData.firstname + " " + adminData.lastname
+                    : "Loading..."}
                 </p>
-                <p>
-                  <b>Email:</b> admin@gmail.com
-                </p>
-                <p>
-                  <b>Role:</b> System Administrator
-                </p>
-              </div>
 
-              {/* LOGOUT BUTTON */}
-              <button className="logout-btn" onClick={handleLogout}>
-                Logout
-              </button>
+                <p>
+                  <b>Email:</b> {adminData ? adminData.email : "Loading..."}
+                </p>
+
+                <button className="logout-btn" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
             </div>
           )}
         </section>

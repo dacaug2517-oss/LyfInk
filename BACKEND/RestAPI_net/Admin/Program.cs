@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Register DbContext Service
+// ✅ DbContext
 builder.Services.AddDbContext<P17BloodbankContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("BloodBankDB"),
@@ -11,8 +11,20 @@ builder.Services.AddDbContext<P17BloodbankContext>(options =>
     )
 );
 
-// ✅ Add Controllers
+// ✅ Controllers
 builder.Services.AddControllers();
+
+// ✅ CORS Fix
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 // ✅ Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -29,7 +41,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 
-// ✅ Map API Controllers
+// ✅ Enable CORS Middleware
+app.UseCors("AllowReactApp");
+
+// ✅ Map Controllers
 app.MapControllers();
 
 app.Run();

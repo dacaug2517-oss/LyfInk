@@ -1,24 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "../../style/admin.css";
 
 export default function ReportAnalysis() {
+  const [hospitalReports, setHospitalReports] = useState([]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user && user.userid) {
+      axios
+        .get(`http://localhost:5000/api/Report/admin/${user.userid}`)
+        .then((res) => {
+          setHospitalReports(res.data);
+        })
+        .catch((err) => console.log("Report Error:", err));
+    }
+  }, []);
+
   return (
     <div className="page-box">
       <h2>Reports & Analytics</h2>
 
-      <div className="cards-row">
-        <div className="card-box">Total Donations This Month <b>92</b></div>
-        <div className="card-box">Total Requests This Month <b>35</b></div>
-        <div className="card-box">Average Fulfill Time <b>3.5 Hours</b></div>
-      </div>
-
+      {/* ✅ Hospital Report Table */}
       <div className="report-section">
-        <h3>Recent Activity</h3>
-        <ul>
-          <li>Blood Donation Completed - Springfield</li>
-          <li>Urgent Request Raised - Greenfield</li>
-          <li>Inventory Updated - O- Stock Low</li>
-        </ul>
+        <h3>Hospitals Registered By You</h3>
+
+        {hospitalReports.length === 0 ? (
+          <p>No hospitals registered yet.</p>
+        ) : (
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Hospital Name</th>
+                <th>Type</th>
+                <th>Total Stock (ml)</th>
+                <th>Total Donations</th>
+                <th>Total Camps</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {hospitalReports.map((h, index) => (
+                <tr key={index}>
+                  <td>{h.hospitalName}</td>
+                  <td>{h.type}</td>
+                  <td>{h.totalStock}</td>
+                  <td>{h.totalDonations}</td>
+                  <td>{h.totalCamps}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
