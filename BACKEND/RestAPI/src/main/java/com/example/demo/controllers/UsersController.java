@@ -13,11 +13,10 @@ import com.example.demo.services.UsersService;
 public class UsersController {
 
     @Autowired
-    private UsersService service;
+    UsersService usersService;
 
     @PostMapping("/register")
     public Users register(@RequestBody RegisterRequest req) {
-
-        return service.register(req);
+        return usersService.register(req);
     }
 }

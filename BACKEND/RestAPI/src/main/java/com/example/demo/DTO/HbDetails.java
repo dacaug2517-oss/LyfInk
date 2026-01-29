@@ -1,12 +1,17 @@
 package com.example.demo.DTO;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class HbDetails {
+@Getter
+@Setter
+public class HbDetails{
+
     private String hb_name;
     private String hb_email;
+    private String hb_password;
     private String hb_phno;
+
     private String reg_no;
     private String gst_no;
     private String type;

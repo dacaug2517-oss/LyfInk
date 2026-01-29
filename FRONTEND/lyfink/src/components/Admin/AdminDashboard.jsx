@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "../../style/admin.css";
 
-import ManageDonor from "./ManageDonor";
 import InventoryManagement from "./InventoryManagement";
 import BloodRequest from "./BloodRequest";
 import ReportAnalysis from "./ReportAnalysis";
 
 import {
   LayoutDashboard,
-  Users,
   Droplet,
   FileText,
   BarChart3,
@@ -19,11 +17,9 @@ import {
 export default function AdminDashboard() {
   const [activePage, setActivePage] = useState("donors");
 
-  // ✅ LOGOUT FUNCTION
+  //LOGOUT FUNCTION
   const handleLogout = () => {
     localStorage.removeItem("user"); // Clear user session
-    alert("Logged out successfully!");
-
     window.location.href = "/login"; // Redirect to login page
   };
 
@@ -55,14 +51,6 @@ export default function AdminDashboard() {
           </button>
 
           <button
-            className={activePage === "donors" ? "nav-btn active" : "nav-btn"}
-            onClick={() => setActivePage("donors")}
-          >
-            <Users size={18} />
-            Manage Donors
-          </button>
-
-          <button
             className={
               activePage === "inventory" ? "nav-btn active" : "nav-btn"
             }
@@ -88,7 +76,7 @@ export default function AdminDashboard() {
             Reports & Analytics
           </button>
 
-          {/* ✅ SETTINGS BUTTON */}
+          {/* SETTINGS BUTTON */}
           <div className="sidebar-bottom">
             <button
               className={activePage === "settings" ? "nav-btn active" : "nav-btn"}
@@ -102,8 +90,7 @@ export default function AdminDashboard() {
 
         {/* ===== CONTENT PANEL ===== */}
         <section className="admin-content">
-          {/* DONOR PAGE */}
-          {activePage === "donors" && <ManageDonor />}
+          
 
           {/* INVENTORY PAGE */}
           {activePage === "inventory" && <InventoryManagement />}
@@ -114,7 +101,7 @@ export default function AdminDashboard() {
           {/* REPORT PAGE */}
           {activePage === "reports" && <ReportAnalysis />}
 
-          {/* ✅ SETTINGS PAGE */}
+          {/* SETTINGS PAGE */}
           {activePage === "settings" && (
             <div className="settings-page">
               <h2>⚙ Admin Settings</h2>
