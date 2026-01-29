@@ -46,4 +46,5 @@ public class Users {
     // ✅ HbDetails Table Mapping
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private HbDetails hb;
+
 }

@@ -1,5 +1,8 @@
 package com.example.demo.services;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +17,24 @@ public class UsersService {
     @Autowired RoleRepository roleRepo;
     @Autowired StateRepository stateRepo;
     @Autowired CityRepository cityRepo;
-
-    // ✅ Needed for Blood Component
     @Autowired BloodComponentRepository bloodComponentRepo;
+    @Autowired HbDetailsRepository hbDetailsRepo;
 
+    // ===========================
+    // ✅ REGISTER METHOD
+    // ===========================
     public Users register(RegisterRequest req) {
+
+        // ✅ Prevent duplicate email
+        if (userRepo.findByEmail(req.getEmail()) != null) {
+            throw new RuntimeException("Email already exists!");
+        }
 
         Role role = roleRepo.findById(req.getRid()).orElseThrow();
         State state = stateRepo.findById(req.getStateid()).orElseThrow();
         City city = cityRepo.findById(req.getCityid()).orElseThrow();
 
+        // ✅ Save Admin/Donor into USERS
         Users user = new Users();
         user.setFirstname(req.getFirstname());
         user.setLastname(req.getLastname());
@@ -39,17 +50,18 @@ public class UsersService {
         user.setState(state);
         user.setCity(city);
 
-        // ✅ Donor Registration
-        if (req.getRid() == 1 && req.getDonorDetails() != null) {
+        // ===========================
+        // ✅ Donor Registration (rid=2)
+        // ===========================
+        if (req.getRid() == 2 && req.getDonorDetails() != null) {
 
             Donor donor = new Donor();
             donor.setDob(req.getDonorDetails().getDob());
             donor.setGender(req.getDonorDetails().getGender());
             donor.setMedical_history(req.getDonorDetails().getMedical_history());
 
-            // ✅ Fetch BloodComponent Object using bcid
-            BloodComponent bc =
-                    bloodComponentRepo.findById(req.getDonorDetails().getBcid())
+            BloodComponent bc = bloodComponentRepo
+                    .findById(req.getDonorDetails().getBcid())
                     .orElseThrow(() -> new RuntimeException("Invalid Blood Component"));
 
             donor.setBloodComponent(bc);
@@ -58,21 +70,86 @@ public class UsersService {
             user.setDonor(donor);
         }
 
-        // ✅ Hospital Registration
-        if (req.getRid() == 2 && req.getHbDetails() != null) {
+        // ✅ Save Admin/Donor in USERS
+        Users savedUser = userRepo.save(user);
+
+        // ===========================
+        // ✅ Admin Registers Hospital (rid=1)
+        // ===========================
+        if (req.getRid() == 1 && req.getHbDetails() != null) {
 
             HbDetails hb = new HbDetails();
-            hb.setHb_name(req.getHbDetails().getHb_name());
-            hb.setHb_email(req.getHbDetails().getHb_email());
-            hb.setHb_phno(req.getHbDetails().getHb_phno());
-            hb.setReg_no(req.getHbDetails().getReg_no());
-            hb.setGst_no(req.getHbDetails().getGst_no());
+
+            hb.setName(req.getHbDetails().getHb_name());
+            hb.setEmail(req.getHbDetails().getHb_email());
+            hb.setPassword(req.getHbDetails().getHb_password());
+            hb.setPhone(req.getHbDetails().getHb_phno());
+
+            hb.setRegNo(req.getHbDetails().getReg_no());
+            hb.setGstNo(req.getHbDetails().getGst_no());
             hb.setType(req.getHbDetails().getType());
 
-            hb.setUser(user);
-            user.setHb(hb);
+            // ✅ Link hospital → admin
+            hb.setUser(savedUser);
+
+            // ✅ Save ONLY in HB_DETAILS
+            hbDetailsRepo.save(hb);
+
+            System.out.println("✅ Hospital/BloodBank saved successfully!");
         }
 
-        return userRepo.save(user);
+        return savedUser;
     }
+
+ // ===========================
+ //  LOGIN METHOD (FINAL WORKING)
+ // ===========================
+ public Object loginUser(String email, String password) {
+
+     Map<String, Object> result = new HashMap<>();
+
+     // ===========================
+     // Check USERS table first
+     // ===========================
+     Users user = userRepo.findByEmail(email);
+
+     if (user != null) {
+
+         if (!user.getPassword().equals(password)) {
+             throw new RuntimeException("Invalid Password!");
+         }
+
+         result.put("userid", user.getUserid());
+         result.put("email", user.getEmail());
+         result.put("rid", user.getRole().getRid());
+
+         return result;
+     }
+
+     // ===========================
+     //  If not found → Check HB_DETAILS table
+     // ===========================
+     HbDetails hb = hbDetailsRepo.findByEmail(email);
+
+     if (hb != null) {
+
+         if (!hb.getPassword().equals(password)) {
+             throw new RuntimeException("Invalid Password!");
+         }
+
+         result.put("hbid", hb.getHbid());
+         result.put("email", hb.getEmail());
+
+         // ✅ Hospital/BloodBank role fixed rid=3
+         result.put("rid", 3);
+
+         return result;
+     }
+
+     // ===========================
+     //  Not found in both tables
+     // ===========================
+     throw new RuntimeException("User Not Found!");
+ }
+
 }

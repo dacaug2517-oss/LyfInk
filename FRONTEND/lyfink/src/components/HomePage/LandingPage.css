@@ -1,0 +1,360 @@
+/* ===== GLOBAL ===== */
+.home-container {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #fff5f5, #f8f9fa);
+  color: #333;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 50px;
+  background: linear-gradient(to right, #8b0000, #b30000, #e60000);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li {
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-links li::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #fff;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+.nav-links li:hover::after {
+  width: 100%;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #b30000, #ff1a1a, #ff4d4d);
+  color: white;
+  text-align: center;
+  padding: 90px 20px;
+  clip-path: ellipse(100% 80% at 50% 20%);
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 35px;
+  opacity: 0.95;
+}
+
+/* ===== BUTTONS ===== */
+.hero-buttons button {
+  padding: 14px 30px;
+  margin: 0 12px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #ffffff, #ffe6e6);
+  color: #b30000;
+  font-weight: bold;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  background: white;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-3px);
+}
+
+
+
+
+
+
+/* ===== HOW IT WORKS ===== */
+.how-it-works {
+  padding: 80px 40px;
+  background: linear-gradient(to right, #fff5f5, #ffffff);
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 32px;
+  color: #b30000;
+  margin-bottom: 10px;
+}
+
+.how-desc {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 50px;
+}
+
+/* ===== STEPS ===== */
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 35px;
+}
+
+/* ===== CARD ===== */
+.how-card {
+  background: white;
+  padding: 35px 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.how-card:hover {
+  transform: translateY(-8px);
+}
+
+/* ===== STEP CIRCLE ===== */
+.step-circle {
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(to right, #b30000, #ff4d4d);
+  color: white;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.how-card h3 {
+  color: #b30000;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.how-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== OUR SERVICES SECTION ===== */
+.features {
+  padding: 90px 60px;
+  background:
+    linear-gradient(135deg, rgba(179, 0, 0, 0.08), rgba(255, 255, 255, 0.95)),
+    radial-gradient(circle at top right, rgba(255, 77, 77, 0.12), transparent 60%);
+  background-blend-mode: multiply;
+  text-align: center;
+}
+
+/* ===== HEADING ===== */
+.features h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #b30000;
+  margin-bottom: 55px;
+  letter-spacing: 1px;
+}
+
+.features h2 span {
+  color: #ff4d4d;
+}
+
+/* ===== GRID ===== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+}
+
+/* ===== CARD DESIGN ===== */
+.feature-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 35px 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(179, 0, 0, 0.12);
+}
+
+.feature-card:hover {
+  transform: translateY(-14px);
+  box-shadow: 0 20px 45px rgba(179, 0, 0, 0.25);
+}
+
+/* ===== CARD TEXT ===== */
+.feature-card h3 {
+  font-size: 21px;
+  color: #b30000;
+  margin-bottom: 14px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .features {
+    padding: 65px 25px;
+  }
+
+  .features h2 {
+    font-size: 30px;
+  }
+}
+
+
+
+
+
+
+
+
+/* ===== ABOUT SECTION ===== */
+.about {
+  padding: 80px 50px;
+  background: linear-gradient(to right, #ffffff, #fff1f1);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+/* ===== TEXT ===== */
+.about-text h2 {
+  color: #b30000;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+/* ===== HIGHLIGHTS ===== */
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.highlight-card {
+  background: white;
+  padding: 20px 25px;
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateX(6px);
+}
+
+.highlight-card h3 {
+  color: #b30000;
+  margin-bottom: 8px;
+}
+
+.highlight-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .about-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== FOOTER ===== */
+.footer {
+  background: linear-gradient(to right, #111, #333);
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 60px;
+  font-size: 14px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+
+
+
+

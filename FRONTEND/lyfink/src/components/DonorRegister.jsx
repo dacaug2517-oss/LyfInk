@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { registerUser } from "../services/UserService";
+import { useNavigate } from "react-router-dom";
+
 
 export default function BloodBankRegister() {
+  
+  const navigate = useNavigate();
+
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -67,8 +72,9 @@ export default function BloodBankRegister() {
   }, []);
 
   const roles = [
-    { id: 1, name: "Donor" },
-    { id: 2, name: "Admin" }
+    
+    { id: 2, name: "Donor" },
+    { id: 3, name: "Hospital/Bloodbank" }
   ];
 
   const securityQuestions = [
@@ -123,7 +129,7 @@ export default function BloodBankRegister() {
     };
 
     // ✅ Donor Details
-    if (Number(formData.rid) === 1) {
+    if (Number(formData.rid) === 2) {
       userPayload.donorDetails = {
         dob: formData.dob,
         gender: formData.gender,
@@ -135,16 +141,18 @@ export default function BloodBankRegister() {
     }
 
     // ✅ Hospital/BloodBank Details
-    if (Number(formData.rid) === 2) {
-      userPayload.hbDetails = {
-        hb_name: formData.hb_name,
-        hb_email: formData.hb_email,
-        hb_phno: formData.hb_phno,
-        reg_no: formData.reg_no,
-        gst_no: formData.gst_no,
-        type: formData.type
-      };
-    }
+    if (Number(formData.rid) === 3) {
+  userPayload.hbDetails = {
+    hb_name: formData.hb_name,
+    hb_email: formData.hb_email,
+    hb_password: formData.hb_password,
+    hb_phno: formData.hb_phno,
+    reg_no: formData.reg_no,
+    gst_no: formData.gst_no,
+    type: formData.type
+  };
+}
+
 
     console.log("Sending Payload:", userPayload);
 
@@ -152,6 +160,8 @@ export default function BloodBankRegister() {
       const response = await registerUser(userPayload);
       alert("Registration Successful!!!");
       console.log(response.data);
+      navigate("/login")
+
     } catch (error) {
       console.error(error);
       alert("Registration Failed!!!");
@@ -173,7 +183,7 @@ export default function BloodBankRegister() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+          background: linear-gradient( #e60000);
           padding: 20px;
         }
 
@@ -189,7 +199,7 @@ export default function BloodBankRegister() {
         }
 
         .left-section {
-          background: linear-gradient(135deg, #e63946 0%, #f77f8e 100%);
+          background: linear-gradient(to right, #e60000, #8b0000);
           color: white;
           padding: 2.5rem;
           display: flex;
@@ -392,11 +402,11 @@ export default function BloodBankRegister() {
                 </div>
 
                 {/* ✅ Donor Fields */}
-                {Number(formData.rid) === 1 && (
+                {Number(formData.rid) === 2 && (
                   <>
                     <h4 className="text-success">Donor Details</h4>
 
-                    
+
                     {/* ✅ Blood Component Dropdown */}
                     <div className="col-md-6 mb-3">
                       <label className="form-label">Blood Component</label>
@@ -455,14 +465,14 @@ export default function BloodBankRegister() {
                 )}
 
                 {/* ✅ Admin Fields (UNCHANGED FULLY) */}
-                {Number(formData.rid) === 2 && (
+                {Number(formData.rid) === 1 && (
                   <>
                     <h4 className="text-primary">
                       Hospital/BloodBank Details
                     </h4>
 
                     <div className="col-12 mb-3">
-                      <label className="form-label">Hospital Name</label>
+                      <label className="form-label">Name</label>
                       <input
                         className="form-control"
                         name="hb_name"
@@ -472,7 +482,7 @@ export default function BloodBankRegister() {
                     </div>
 
                     <div className="col-md-6 mb-3">
-                      <label className="form-label">Hospital Email</label>
+                      <label className="form-label">Email</label>
                       <input
                         className="form-control"
                         name="hb_email"
@@ -480,6 +490,18 @@ export default function BloodBankRegister() {
                         required
                       />
                     </div>
+                   
+                    <div className="col-md-6 mb-3">
+                      <label className="form-label">Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+
 
                     <div className="col-md-6 mb-3">
                       <label className="form-label">Phone</label>

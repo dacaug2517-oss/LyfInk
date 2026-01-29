@@ -23,6 +23,7 @@ public class Donor {
     private BloodComponent bloodComponent;
 
     @OneToOne
-    @JoinColumn(name = "uid")
+    @JoinColumn(name="uid")
     private Users user;
+
 }

@@ -1,53 +1,77 @@
 import React, { useState } from "react";
-import { loginUser } from "../services/UserLogin"; 
+import { loginUser } from "../services/UserLogin";
+import { useNavigate } from "react-router-dom";
 
 export default function BloodBankLogin() {
+
+  const navigate = useNavigate();
+
+  // ✅ State Variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //Login Handler Connected to DB
+  // ✅ Login Handler
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const loginData = {
-      email: email,
-      password: password,
+      email,
+      password,
     };
 
     try {
-      //Call Spring Boot Login API
+      // ✅ Call Backend Login API
       const response = await loginUser(loginData);
 
-      alert("Login Successful");
+      console.log("Login Response:", response.data);
 
-      console.log("Logged User:", response.data);
-
-      // Store User Details (Optional)
+      // ✅ Store Session
       localStorage.setItem("user", JSON.stringify(response.data));
 
-      //Redirect After Login
-      window.location.href = "/dashboard";
+      // ✅ Convert rid properly
+      const rid = Number(response.data.rid);
+
+      // ✅ Debug Check
+      alert("Logged in Successfully! Role ID = " + rid);
+
+      // ✅ Redirect Based on Role
+      if (rid === 1) {
+        navigate("/admin-dashboard");
+      }
+      else if (rid === 2) {
+        navigate("/donor-dashboard");
+      }
+      else if (rid === 3) {
+        navigate("/hospital-dashboard");
+      }
+      else {
+        alert("Unauthorized Role Found!");
+        navigate("/login");
+      }
 
     } catch (error) {
       console.error("Login Error:", error);
-      alert("Invalid Email or Password");
+
+      alert("Invalid Email or Password!");
     }
   };
 
   return (
     <>
+      {/* Bootstrap CDN */}
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
         rel="stylesheet"
       />
 
+      {/* Styling */}
       <style>{`
         .login-container {
           min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+          background: linear-gradient( #e60000);
           padding: 20px;
         }
 
@@ -61,9 +85,9 @@ export default function BloodBankLogin() {
         }
 
         .left-section {
-          background: linear-gradient(135deg, #e63946 0%, #f77f8e 100%);
+          background: linear-gradient(to right,  #e60000, #8b0000);
           color: white;
-          padding: 1rem;
+          padding: 2rem;
         }
 
         img {
@@ -115,6 +139,7 @@ export default function BloodBankLogin() {
         }
       `}</style>
 
+      {/* Layout */}
       <div className="login-container">
         <div className="container">
           <div className="row g-0 login-card">
@@ -137,7 +162,7 @@ export default function BloodBankLogin() {
 
                 <h2 className="signin-title mb-4">Sign In</h2>
 
-                {/*FORM SUBMIT*/}
+                {/* Login Form */}
                 <form onSubmit={handleLogin}>
 
                   {/* Email */}
@@ -171,6 +196,7 @@ export default function BloodBankLogin() {
                     Login
                   </button>
 
+                  {/* Register Link */}
                   <div className="text-center">
                     <span>New user? </span>
                     <a href="/register" className="register-link">
