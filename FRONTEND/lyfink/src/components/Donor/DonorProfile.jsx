@@ -225,6 +225,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import EditDonorProfile from "./EditDonorProfile";
+import DonationCamp from "./DonationCamps";
 
 export default function DonorProfile({ setPage }) {
   const [donor, setDonor] = useState(null);
@@ -238,7 +239,7 @@ export default function DonorProfile({ setPage }) {
   const fetchDonor = async () => {
     try {
       const res = await axios.get(`http://localhost:8080/api/donor/profile/${userId}`);
-      
+
       // If API returns a list, pick the first donor
       const donorData = Array.isArray(res.data) ? res.data[0] : res.data;
 
@@ -291,55 +292,9 @@ export default function DonorProfile({ setPage }) {
     return <div style={{ padding: 30 }}>Loading donor profile...</div>;
   }
 
-  // Empty donor state
-  if (!donor) {
-    return <div style={{ padding: 30 }}>No donor profile found.</div>;
-  }
-
   return (
-    <div
-      style={{
-        background: "#fff",
-        borderRadius: 18,
-        padding: 30,
-        maxWidth: 1000,
-        boxShadow: "0 20px 45px rgba(0,0,0,0.15)",
-      }}
-    >
-      <h1 style={{ color: "#8b4513" }}>
-        {donor.uid?.firstname || "First"} {donor.uid?.lastname || "Last"}!
-      </h1>
 
-      <h3>Donor Profile</h3>
+    <DonationCamp />
 
-      <p><b>Full Name:</b> {donor.uid?.firstname || "-"} {donor.uid?.lastname || "-"}</p>
-      <p><b>Blood Group:</b> {donor.bcid?.bc_name || "-"}</p>
-      {/* <p><b>Contact Number:</b> {donor.uid?.mobno || "-"}</p> */}
-      <p><b>Email:</b> {donor.uid?.email || "-"}</p>
-      <p><b>Gender:</b> {donor.gender || "-"}</p>
-      <p><b>Medical History:</b> {donor.medical_history || "None"}</p>
-
-      <hr />
-
-      <div style={{ display: "flex", gap: 30 }}>
-        <div>❤️ <b>Total Donations:</b> {stats.total}</div>
-        <div>🩸 <b>Last Donation:</b> {stats.last}</div>
-      </div>
-
-      <button
-        onClick={() => setCurrentPage("edit-profile")}
-        style={{
-          marginTop: 20,
-          padding: "10px 22px",
-          background: "#ff5a5f",
-          color: "#fff",
-          border: "none",
-          borderRadius: 8,
-          cursor: "pointer",
-        }}
-      >
-        Edit Profile
-      </button>
-    </div>
   );
 }

@@ -7,7 +7,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/request/blood")
+      .get("http://localhost:8081/api/request/blood")
       .then((res) => {
         setDashboardData(res.data);
       })
@@ -51,6 +51,6 @@ export default function Dashboard() {
         </tbody>
       </table>
     </div>
-    
+
   </>);
 }

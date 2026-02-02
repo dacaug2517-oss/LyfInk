@@ -1,6 +1,8 @@
 
 package com.example.demo.entities;
 
+import java.util.Optional;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +39,10 @@ public class HbDetails {
     // ✅ Admin who registered this hospital
     @ManyToOne
     @JoinColumn(name="uid")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Users user;
+    
+    
+    
 }
 

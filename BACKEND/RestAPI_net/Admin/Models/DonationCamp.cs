@@ -13,12 +13,11 @@ public partial class DonationCamp
 
     public string? Venue { get; set; }
 
-    public DateOnly Date { get; set; }
+    public DateOnly Date { get; set; }          // if MySQL DATE
+    public TimeSpan FromTime { get; set; }      // MySQL TIME
+    public TimeSpan ToTime { get; set; }        // MySQL TIME
 
-    public DateOnly? FromTime { get; set; }
-
-    public DateOnly? ToTime { get; set; }
-
+    
     public string? ContactPerson { get; set; }
 
     public string? Address { get; set; }

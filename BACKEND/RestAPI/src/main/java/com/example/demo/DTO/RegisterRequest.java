@@ -11,7 +11,7 @@ public class RegisterRequest {
     private String lastname;
     private String email;
     private String password;
-    private String mobno;
+    private Long mobno;
     private String address;
 
     private Integer rid;

@@ -1,7 +1,7 @@
 /* ===== GLOBAL ===== */
 .home-container {
   font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #fff5f5, #f8f9fa);
+  background: linear-gradient(135deg, #E3F2FD, #F0F4F8);
   color: #333;
   min-height: 100vh;
 }
@@ -11,28 +11,34 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 50px;
-  background: linear-gradient(to right, #8b0000, #b30000, #e60000);
+  padding: 20px 60px;
+  background: linear-gradient(to right, #42A5F5, #5C6BC0, #66BB6A);
   color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   letter-spacing: 1px;
+  margin-left: 10px;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 25px;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  margin-right: 10px;
 }
 
 .nav-links li {
   cursor: pointer;
   font-weight: 500;
   position: relative;
+  font-size: 16px;
+  white-space: nowrap;
 }
 
 .nav-links li::after {
@@ -52,7 +58,7 @@
 
 /* ===== HERO ===== */
 .hero {
-  background: linear-gradient(135deg, #b30000, #ff1a1a, #ff4d4d);
+  background: linear-gradient(135deg, #42A5F5, #5C6BC0, #66BB6A);
   color: white;
   text-align: center;
   padding: 90px 20px;
@@ -83,8 +89,8 @@
 }
 
 .btn-primary {
-  background: linear-gradient(to right, #ffffff, #ffe6e6);
-  color: #b30000;
+  background: linear-gradient(to right, #ffffff, #E3F2FD);
+  color: #42A5F5;
   font-weight: bold;
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
@@ -113,13 +119,13 @@
 /* ===== HOW IT WORKS ===== */
 .how-it-works {
   padding: 80px 40px;
-  background: linear-gradient(to right, #fff5f5, #ffffff);
+  background: linear-gradient(to right, #F0F4F8, #ffffff);
   text-align: center;
 }
 
 .how-it-works h2 {
   font-size: 32px;
-  color: #b30000;
+  color: #42A5F5;
   margin-bottom: 10px;
 }
 
@@ -154,7 +160,7 @@
 .step-circle {
   width: 55px;
   height: 55px;
-  background: linear-gradient(to right, #b30000, #ff4d4d);
+  background: linear-gradient(to right, #42A5F5, #5C6BC0);
   color: white;
   border-radius: 50%;
   font-size: 20px;
@@ -166,7 +172,7 @@
 }
 
 .how-card h3 {
-  color: #b30000;
+  color: #42A5F5;
   margin-bottom: 12px;
   font-size: 20px;
 }
@@ -192,8 +198,8 @@
 .features {
   padding: 90px 60px;
   background:
-    linear-gradient(135deg, rgba(179, 0, 0, 0.08), rgba(255, 255, 255, 0.95)),
-    radial-gradient(circle at top right, rgba(255, 77, 77, 0.12), transparent 60%);
+    linear-gradient(135deg, rgba(66, 165, 245, 0.08), rgba(255, 255, 255, 0.95)),
+    radial-gradient(circle at top right, rgba(92, 107, 192, 0.12), transparent 60%);
   background-blend-mode: multiply;
   text-align: center;
 }
@@ -202,13 +208,13 @@
 .features h2 {
   font-size: 36px;
   font-weight: 700;
-  color: #b30000;
+  color: #42A5F5;
   margin-bottom: 55px;
   letter-spacing: 1px;
 }
 
 .features h2 span {
-  color: #ff4d4d;
+  color: #5C6BC0;
 }
 
 /* ===== GRID ===== */
@@ -226,18 +232,18 @@
   border-radius: 20px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   transition: all 0.4s ease;
-  border: 1px solid rgba(179, 0, 0, 0.12);
+  border: 1px solid rgba(66, 165, 245, 0.12);
 }
 
 .feature-card:hover {
   transform: translateY(-14px);
-  box-shadow: 0 20px 45px rgba(179, 0, 0, 0.25);
+  box-shadow: 0 20px 45px rgba(66, 165, 245, 0.25);
 }
 
 /* ===== CARD TEXT ===== */
 .feature-card h3 {
   font-size: 21px;
-  color: #b30000;
+  color: #42A5F5;
   margin-bottom: 14px;
 }
 
@@ -268,7 +274,7 @@
 /* ===== ABOUT SECTION ===== */
 .about {
   padding: 80px 50px;
-  background: linear-gradient(to right, #ffffff, #fff1f1);
+  background: linear-gradient(to right, #ffffff, #F0F4F8);
 }
 
 .about-content {
@@ -280,7 +286,7 @@
 
 /* ===== TEXT ===== */
 .about-text h2 {
-  color: #b30000;
+  color: #42A5F5;
   font-size: 32px;
   margin-bottom: 20px;
 }
@@ -312,7 +318,7 @@
 }
 
 .highlight-card h3 {
-  color: #b30000;
+  color: #42A5F5;
   margin-bottom: 8px;
 }
 
@@ -353,8 +359,3 @@
 .footer p {
   margin: 5px 0;
 }
-
-
-
-
-

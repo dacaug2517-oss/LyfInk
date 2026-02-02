@@ -1,58 +1,40 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import "../../style/admin.css";
 
+import HospitalStockChart from "../Admin/Reports/HospitalStockChart";
+import RegisteredHospitalsChart from "../Admin/Reports/RegisteredHospitalChart";
+
 export default function ReportAnalysis() {
-  const [hospitalReports, setHospitalReports] = useState([]);
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (user && user.userid) {
-      axios
-        .get(`http://localhost:5000/api/Report/admin/${user.userid}`)
-        .then((res) => {
-          setHospitalReports(res.data);
-        })
-        .catch((err) => console.log("Report Error:", err));
-    }
-  }, []);
-
   return (
     <div className="page-box">
-      <h2>Reports & Analytics</h2>
+      <h2>Reports & Analytics Dashboard</h2>
 
-      {/* ✅ Hospital Report Table */}
+      {/* ============================= */}
+      {/* ✅ Chart 1: Stock Report */}
+      {/* ============================= */}
       <div className="report-section">
-        <h3>Hospitals Registered By You</h3>
+        <h3>1. Blood Stock Report</h3>
+        <p className="report-desc">
+          This chart shows total blood stock (in ml) available in each hospital.
+        </p>
 
-        {hospitalReports.length === 0 ? (
-          <p>No hospitals registered yet.</p>
-        ) : (
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Hospital Name</th>
-                <th>Type</th>
-                <th>Total Stock (ml)</th>
-                <th>Total Donations</th>
-                <th>Total Camps</th>
-              </tr>
-            </thead>
+        <div className="chart-box">
+          <HospitalStockChart />
+        </div>
+      </div>
 
-            <tbody>
-              {hospitalReports.map((h, index) => (
-                <tr key={index}>
-                  <td>{h.hospitalName}</td>
-                  <td>{h.type}</td>
-                  <td>{h.totalStock}</td>
-                  <td>{h.totalDonations}</td>
-                  <td>{h.totalCamps}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+      {/* ============================= */}
+      {/* ✅ Chart 2: Registered Hospitals */}
+      {/* ============================= */}
+      <div className="report-section">
+        <h3>2. Hospitals Registered Report</h3>
+        <p className="report-desc">
+          This chart shows all hospitals registered under the logged-in admin.
+        </p>
+
+        <div className="chart-box">
+          <RegisteredHospitalsChart />
+        </div>
       </div>
     </div>
   );

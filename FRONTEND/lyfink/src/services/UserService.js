@@ -1,7 +1,6 @@
-import axios from "axios";
+import authService from "./authService";
 
-const BASE_URL = "http://localhost:8080/api/users";
-
-export const registerUser = (userData) => {
-  return axios.post(`${BASE_URL}/register`, userData);
+// Register a new user (uses JWT authentication)
+export const registerUser = async (userData) => {
+  return await authService.register(userData);
 };

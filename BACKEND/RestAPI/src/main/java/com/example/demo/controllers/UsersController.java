@@ -16,7 +16,14 @@ public class UsersController {
     UsersService usersService;
 
     @PostMapping("/register")
-    public Users register(@RequestBody RegisterRequest req) {
+    public Object register(@RequestBody RegisterRequest req) {
         return usersService.register(req);
+    }
+
+    // ✅ New Endpoint for Admin to Register Hospital
+    // Token is automatically decoded by Spring Security, providing the Admin's email in 'principal'
+    @PostMapping("/register-hospital")
+    public Object registerHospital(@RequestBody com.example.demo.DTO.HbDetails hbDetails, java.security.Principal principal) {
+        return usersService.registerHospital(hbDetails, principal.getName());
     }
 }

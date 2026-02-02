@@ -1,5 +1,8 @@
 package com.example.demo.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +21,7 @@ public class Users {
     private String lastname;
     private String email;
     private String password;
-    private String mobno;
+    private long mobno;
     private String address;
 
     private String security_question;
@@ -39,12 +42,12 @@ public class Users {
     @JoinColumn(name="cityid")
     private City city;
 
-    // ✅ Donor Table Mapping
+    // ✅ Donor Table Mapping (One user = One donor)
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Donor donor;
 
-    // ✅ HbDetails Table Mapping
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private HbDetails hb;
+    // ✅ HbDetails Mapping (One user = Many hospitals)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<HbDetails> hospitals = new ArrayList<>();
 
 }

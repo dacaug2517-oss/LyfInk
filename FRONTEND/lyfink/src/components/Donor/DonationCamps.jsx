@@ -1,32 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { getCamps } from "../services/api";
-
-// export default function DonationCamps() {
-//   const [camps, setCamps] = useState([]);
-
-//   useEffect(() => {
-//     getCamps().then(r => setCamps(r.data));
-//   }, []);
-
-//   const box = {
-//     width: 800, margin: "40px auto", padding: 25, borderRadius: 14,
-//     background: "linear-gradient(#fff,#f1f3ff)", boxShadow: "0 10px 25px rgba(0,0,0,.15)"
-//   };
-
-//   return (
-//     <div style={box}>
-//       <h2 style={{ color: "#b11226" }}>Upcoming Camps</h2>
-//       {camps.map((c, i) => (
-//         <div key={i} style={{ padding: 12, borderBottom: "1px solid #ddd" }}>
-//           <b>{c.name}</b> – {c.location} – {c.date}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -35,7 +6,7 @@ export default function DonationCamp() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/camps") // 🔁 backend endpoint
+      .get("http://localhost:8082/api/camps") // 🔁 backend endpoint
       .then((res) => {
         setCamps(res.data);
       })

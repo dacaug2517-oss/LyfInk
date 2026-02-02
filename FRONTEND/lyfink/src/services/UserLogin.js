@@ -1,13 +1,17 @@
-import axios from "axios";
+import authService from "./authService";
 
-const BASE_URL = "http://localhost:8080/api/users/login";
+// Legacy wrapper for backward compatibility
+// Use authService directly in new code
 
-//Register
-export const registerUser = (userData) => {
-  return axios.post(`${BASE_URL}/register`, userData);
+// Register
+export const registerUser = async (userData) => {
+  return await authService.register(userData);
 };
 
-//Login
-export const loginUser = (loginData) => {
-  return axios.post(`${BASE_URL}`, loginData);
+// Login
+export const loginUser = async (loginData) => {
+  const { email, password } = loginData;
+  const response = await authService.login(email, password);
+  // Return in the old format for backward compatibility
+  return { data: response };
 };

@@ -14,101 +14,110 @@ import {
 import Dashboard from "./Dashboard";
 import RequestBlood from "./RequestBlood";
 import BloodStock from "./BloodStock";
-import PatientRecords from "./PatientRecords";
+import PatientRecords from "./BloodResponse";
 import OrderFulfillment from "./OrderFulfillment";
+import DonationCamp from "./DonationCamp";
 
+import LogoutButton from "../LogoutButton";
 
 import "./Style.css";
+import authService from "../../services/authService";
 
 export default function HospitalDashboard() {
   const [page, setPage] = useState("request");
-
+  const user = authService.getCurrentUser();
   return (
-    <>
-   
-    <header className="hb-header">
-          <h1>Hospital / Blood Bank</h1>
+    <div className="admin-wrapper">
+      {/* Top Bar - matching admin style */}
+      <header className="admin-topbar">
+        <div className="admin-logo">
+          <h1>Hello {user.name}</h1>
+        </div>
 
-          <div className="hb-icons">
-            <User size={18} />
-            <Bell size={18} />
-            <span className="hb-badge">4</span>
+        <div className="admin-icons">
+          <LogoutButton className="btn btn-sm btn-danger me-3" />
+
+          {/* Notification Icon */}
+          <div className="notif-icon">
+            <Bell size={20} />
+            <span className="notif-badge">4</span>
           </div>
-        </header>
-    <div className="hb-wrapper">
-       
+        </div>
+      </header>
 
-      {/* SIDEBAR (LEFT) */}
-      <aside className="hb-sidebar">
-        <h2 className="hb-logo">Hospital / Blood Bank</h2>
-
-        <nav>
+      {/* Main */}
+      <div className="admin-main">
+        {/* Sidebar - matching admin style */}
+        <aside className="admin-sidebar">
           <button
-            className={page === "dashboard" ? "active" : ""}
+            className={page === "dashboard" ? "nav-btn active" : "nav-btn"}
             onClick={() => setPage("dashboard")}
           >
-            <LayoutDashboard size={18} />
-            Dashboard
+            <LayoutDashboard size={18} /> Dashboard
           </button>
 
           <button
-            className={page === "request" ? "active" : ""}
+            className={page === "request" ? "nav-btn active" : "nav-btn"}
             onClick={() => setPage("request")}
           >
-            <Droplet size={18} />
-            Request Blood
+            <Droplet size={18} /> Request Blood
           </button>
 
           <button
-            className={page === "stock" ? "active" : ""}
+            className={page === "stock" ? "nav-btn active" : "nav-btn"}
             onClick={() => setPage("stock")}
           >
-            <ClipboardList size={18} />
-            Check Blood Stock
+            <ClipboardList size={18} /> Check Blood Stock
           </button>
 
           <button
-            className={page === "patients" ? "active" : ""}
+            className={page === "patients" ? "nav-btn active" : "nav-btn"}
             onClick={() => setPage("patients")}
           >
-            <FileText size={18} />
-            Patient Records
+            <FileText size={18} /> Blood Req-Response
           </button>
 
           <button
-            className={page === "orders" ? "active" : ""}
+            className={page === "orders" ? "nav-btn active" : "nav-btn"}
             onClick={() => setPage("orders")}
           >
-            <Truck size={18} />
-            Order Fulfillment
+            <Truck size={18} /> Order Fulfillment
           </button>
-        </nav>
 
-        <div className="hb-bottom">
-          <button>
-            <Settings size={18} />
-            System Settings
+          <button
+            className={page === "camps" ? "nav-btn active" : "nav-btn"}
+            onClick={() => setPage("camps")}
+          >
+            <ClipboardList size={18} /> DonationCamps
           </button>
-        </div>
-      </aside>
 
-      {/* MAIN CONTENT (RIGHT) */}
-      <section className="hb-main">
-        
-        {/* HEADER */}
-       
+          {/* Settings at bottom */}
+          <div className="sidebar-bottom">
+            <button
+              className={page === "settings" ? "nav-btn active" : "nav-btn"}
+              onClick={() => setPage("settings")}
+            >
+              <Settings size={18} /> System Settings
+            </button>
+          </div>
+        </aside>
 
-        {/* PAGE CONTENT */}
-        <div className="hb-content">
+        {/* Content Area - matching admin style */}
+        <section className="admin-content">
           {page === "dashboard" && <Dashboard />}
           {page === "request" && <RequestBlood />}
           {page === "stock" && <BloodStock />}
           {page === "patients" && <PatientRecords />}
           {page === "orders" && <OrderFulfillment />}
-        </div>
-
-      </section>
+          {page === "camps" && <DonationCamp />}
+          {page === "settings" && (
+            <div className="page-box">
+              <h2>⚙ System Settings</h2>
+              <p>Configure your hospital settings here.</p>
+            </div>
+          )}
+        </section>
+      </div>
     </div>
-     </>
   );
 }

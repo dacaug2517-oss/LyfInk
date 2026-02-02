@@ -4,7 +4,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #fff3e6, #ffd6b3);
+  background: #F0F7FF;
 }
 
 button {
@@ -25,34 +25,17 @@ button {
 ================================*/
 .hb-sidebar {
   width: 260px;
-  background: linear-gradient(to bottom, #fff8f2, #ffe0c2);
+  background: linear-gradient(to bottom, #FAFCFE, #F0F4F8);
   padding: 20px;
   margin: 18px;
   border-radius: 18px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .hb-logo {
   font-size: 20px;
   font-weight: bold;
-  color: #c2410c;
+  color: #42A5F5;
   margin-bottom: 20px;
 }
 
@@ -67,19 +50,20 @@ button {
   border: none;
   border-radius: 12px;
   background: transparent;
-  color: #b45309;
+  color: #42A5F5;
   font-size: 15px;
+  font-weight: 500;
   transition: 0.2s;
 }
 
 .hb-sidebar button:hover {
-  background: rgba(255, 106, 0, 0.15);
+  background: rgba(66, 165, 245, 0.12);
 }
 
 .hb-sidebar button.active {
-  background: linear-gradient(to right, #ff7a18, #ff4f00);
+  background: linear-gradient(135deg, #42A5F5 0%, #5C6BC0 100%);
   color: white;
-  box-shadow: 0 4px 10px rgba(255, 106, 0, 0.4);
+  box-shadow: 0 4px 10px rgba(66, 165, 245, 0.35);
 }
 
 .hb-bottom {
@@ -101,14 +85,14 @@ button {
 ================================*/
 .hb-header {
   height: 70px;
-  background: linear-gradient(to right, #ff8c42, #ff5a1f);
+  background: linear-gradient(160deg, #42A5F5 0%, #5C6BC0 50%, #66BB6A 100%);
   border-radius: 18px;
   padding: 0 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
-  box-shadow: 0 5px 15px rgba(255, 106, 0, 0.35);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .hb-icons {
@@ -121,7 +105,7 @@ button {
   position: absolute;
   top: -6px;
   right: -10px;
-  background: red;
+  background: #EF5350;
   color: white;
   font-size: 10px;
   padding: 3px 7px;
@@ -136,8 +120,8 @@ button {
   margin-top: 18px;
   padding: 25px;
   border-radius: 18px;
-  background: linear-gradient(to bottom, #ffffff, #fff5eb);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  background: linear-gradient(to bottom, #ffffff, #FAFCFE);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   /* overflow-y: auto; */
 }
 
@@ -145,16 +129,17 @@ button {
    CARD
 ================================*/
 .hb-card {
-  background: linear-gradient(to bottom, #fffaf5, #ffe6cc);
+  background: linear-gradient(to bottom, #FAFCFE, #E3F2FD);
   border-radius: 16px;
   padding: 22px;
   box-shadow: inset 0 1px 4px rgba(255,255,255,0.9);
+  border: 1px solid rgba(66, 165, 245, 0.2);
 }
 
 .hb-title {
   font-size: 24px;
   font-weight: bold;
-  color: #c2410c;
+  color: #42A5F5;
   margin-bottom: 20px;
 }
 
@@ -169,19 +154,21 @@ button {
 }
 
 .hb-table th {
-  background: linear-gradient(to bottom, #ffe8d1, #ffd2a8);
+  background: linear-gradient(to bottom, #E3F2FD, #BBDEFB);
   padding: 14px;
   text-align: left;
-  color: #9a3412;
+  color: #42A5F5;
+  font-weight: 600;
 }
 
 .hb-table td {
   padding: 14px;
   border-bottom: 1px solid #e5e7eb;
+  color: #546E7A;
 }
 
 .hb-table tr:hover {
-  background: #fff4e6;
+  background: #F0F4F8;
 }
 
 /* ===============================
@@ -195,13 +182,13 @@ button {
 }
 
 .hb-status.urgent {
-  background: #fee2e2;
-  color: red;
+  background: #FFCDD2;
+  color: #C62828;
 }
 
 .hb-status.ok {
-  background: #dcfce7;
-  color: green;
+  background: #C8E6C9;
+  color: #2E7D32;
 }
 
 /* ===============================
@@ -212,18 +199,30 @@ button {
   padding: 12px 20px;
   border: none;
   border-radius: 12px;
-  background: linear-gradient(to right, #ff7a18, #ff4f00);
+  background: linear-gradient(135deg, #42A5F5 0%, #5C6BC0 100%);
   color: white;
   font-size: 15px;
-  box-shadow: 0 4px 10px rgba(255, 106, 0, 0.4);
+  box-shadow: 0 4px 10px rgba(66, 165, 245, 0.35);
+  transition: all 0.3s ease;
+}
+
+.hb-btn:hover {
+  background: linear-gradient(135deg, #2196F3 0%, #5C6BC0 100%);
+  box-shadow: 0 6px 16px rgba(66, 165, 245, 0.4);
+  transform: translateY(-2px);
 }
 
 .hb-view {
   padding: 6px 14px;
   border-radius: 10px;
   border: none;
-  background: #ffedd5;
-  color: #9a3412;
+  background: #E3F2FD;
+  color: #42A5F5;
+  transition: all 0.2s ease;
+}
+
+.hb-view:hover {
+  background: #BBDEFB;
 }
 
 /* ===============================
@@ -239,7 +238,15 @@ button {
 .hb-form select {
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #fed7aa;
+  border: 1px solid #BBDEFB;
+  transition: all 0.2s ease;
+}
+
+.hb-form input:focus,
+.hb-form select:focus {
+  outline: none;
+  border-color: #42A5F5;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.15);
 }
 
 /* ===============================
@@ -247,7 +254,7 @@ button {
 ================================*/
 .highlight {
   font-weight: 600;
-  color: #c2410c;
+  color: #42A5F5;
 }
 
 
@@ -264,3 +271,149 @@ button {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+   DONATION CAMP REGISTER (HB THEME)
+================================*/
+
+.dc-container {
+  display: flex;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #FAFCFE, #E3F2FD);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 1px solid rgba(66, 165, 245, 0.2);
+}
+
+/* LEFT PANEL */
+.dc-left {
+  background: linear-gradient(
+    160deg,
+    #42A5F5 0%,
+    #5C6BC0 60%,
+    #66BB6A 100%
+  );
+  color: white;
+  padding: 45px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dc-left h1 {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.dc-left p {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* RIGHT PANEL */
+.dc-right {
+  padding: 35px;
+  background: #ffffff;
+}
+
+.dc-right h2 {
+  color: #42A5F5;
+  font-weight: bold;
+}
+
+/* FORM ELEMENTS */
+.dc-right .form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #546E7A;
+}
+
+.dc-right .form-control,
+.dc-right .form-select {
+  border-radius: 10px;
+  border: 1px solid #BBDEFB;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.dc-right .form-control:focus,
+.dc-right .form-select:focus {
+  outline: none;
+  border-color: #42A5F5;
+  box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.15);
+}
+
+/* SUBMIT BUTTON */
+.dc-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #42A5F5 0%, #5C6BC0 100%);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(66, 165, 245, 0.35);
+  transition: all 0.3s ease;
+}
+
+.dc-btn:hover {
+  background: linear-gradient(135deg, #2196F3 0%, #5C6BC0 100%);
+  box-shadow: 0 6px 16px rgba(66, 165, 245, 0.4);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .dc-container {
+    flex-direction: column;
+  }
+
+  .dc-left {
+    text-align: center;
+  }
+}
+
+/* ===============================
+   NEW STATUS BADGES
+================================*/
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.status-success {
+  background-color: #C8E6C9;
+  color: #2E7D32;
+}
+
+.status-warning {
+  background-color: #ffccbc;
+  color: #d84315;
+}
+
+.text-muted {
+  color: #90A4AE;
+}

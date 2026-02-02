@@ -42,9 +42,11 @@ public partial class P17BloodbankContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=root;database=p17_bloodbank", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.2.0-mysql"));
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+// => optionsBuilder.UseMySql(
+//    "server=localhost;port=3306;database=p17_bloodbank;user=root;password=0992;AllowPublicKeyRetrieval=True;SslMode=None;",
+//    ServerVersion.AutoDetect("server=localhost;port=3306;database=p17_bloodbank;user=root;password=0992;")
+//);
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -83,7 +85,7 @@ public partial class P17BloodbankContext : DbContext
             entity.Property(e => e.Bcid).HasColumnName("bcid");
             entity.Property(e => e.Cityid).HasColumnName("cityid");
             entity.Property(e => e.ContactNo)
-                .HasMaxLength(255)
+                .HasMaxLength(255)  
                 .HasColumnName("contact_no");
             entity.Property(e => e.Purpose)
                 .HasMaxLength(255)
@@ -293,33 +295,28 @@ public partial class P17BloodbankContext : DbContext
 
         modelBuilder.Entity<HbDetail>(entity =>
         {
-            entity.HasKey(e => e.Hbid).HasName("PRIMARY");
-
             entity.ToTable("hb_details");
 
-            entity.HasIndex(e => e.Uid, "uid_idx");
+            entity.HasKey(e => e.Hbid);
 
             entity.Property(e => e.Hbid).HasColumnName("hbid");
-            entity.Property(e => e.GstNo)
-                .HasMaxLength(255)
-                .HasColumnName("gst_no");
-            entity.Property(e => e.HbEmail)
-                .HasMaxLength(255)
-                .HasColumnName("hb_email");
-            entity.Property(e => e.HbName)
-                .HasMaxLength(255)
-                .HasColumnName("hb_name");
+            entity.Property(e => e.HbName).HasColumnName("hb_name");
             entity.Property(e => e.HbPhno).HasColumnName("hb_phno");
-            entity.Property(e => e.RegNo)
-                .HasMaxLength(255)
-                .HasColumnName("reg_no");
-            entity.Property(e => e.Type).HasColumnName("type");
+            entity.Property(e => e.RegNo).HasColumnName("reg_no");
+            entity.Property(e => e.GstNo).HasColumnName("gst_no");
             entity.Property(e => e.Uid).HasColumnName("uid");
+            entity.Property(e => e.Type).HasColumnName("type");
+            entity.Property(e => e.HbEmail).HasColumnName("hb_email");
+            entity.Property(e => e.HbPassword).HasColumnName("hb_password");
 
-            entity.HasOne(d => d.UidNavigation).WithMany(p => p.HbDetails)
+            // ✅ FIX Navigation Mapping
+            entity.HasOne(d => d.UidNavigation)
+                .WithMany(p => p.HbDetails)
                 .HasForeignKey(d => d.Uid)
-                .HasConstraintName("userid");
+                .HasConstraintName("fk_hbdetails_user");
         });
+
+
 
         modelBuilder.Entity<Role>(entity =>
         {

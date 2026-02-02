@@ -9,6 +9,10 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import HospitalDashboard from "./components/HB/HospitalDashboard";
 import DonorDashboard from "./components/Donor/DonorDashboard";
 
+import RegisterHospital from "./components/Admin/RegisterHospital";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Unauthorized from "./components/Unauthorized";
+
 function App() {
   return (
     <Routes>
@@ -18,11 +22,45 @@ function App() {
       {/* Auth Pages */}
       <Route path="/login" element={<BloodBankLogin />} />
       <Route path="/register" element={<DonorRegister />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
 
-      {/* Dashboards */}
-      <Route path="/admin-dashboard" element={<AdminDashboard />} />
-      <Route path="/donor-dashboard" element={<DonorDashboard />} />
-      <Route path="/hospital-dashboard" element={<HospitalDashboard />} />
+      {/* Protected Dashboards */}
+      <Route
+        path="/admin-dashboard"
+        element={
+          <ProtectedRoute allowedRoles={[1]}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/donor-dashboard"
+        element={
+          <ProtectedRoute allowedRoles={[2]}>
+            <DonorDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/hospital-dashboard"
+        element={
+          <ProtectedRoute allowedRoles={[3]}>
+            <HospitalDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* ✅ Register Hospital Page - Protected for Admin only */}
+      <Route
+        path="/register-hospital"
+        element={
+          <ProtectedRoute allowedRoles={[1]}>
+            <RegisterHospital />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

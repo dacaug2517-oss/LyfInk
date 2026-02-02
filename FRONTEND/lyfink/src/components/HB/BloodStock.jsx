@@ -1,120 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import apiService from "../../services/apiService";
 import "./Style.css";
-
-const stockData = [
-  { type: "A+", units: 20, status: "URGENT" },
-  { type: "B+", units: 15, status: "URGENT" },
-  { type: "AB+", units: 12, status: "OK" },
-  { type: "O+", units: 8, status: "URGENT" },
-];
+import authService from "../../services/authService";
 
 export default function BloodStock() {
+  const [bloodStock, setBloodStock] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    console.log("userid from localStorage:", Number(user["hbid"]));
+
+    const hbid = Number(user["hbid"]);
+
+    if (!!hbid) {
+      setError("Stock not Available");
+      setLoading(false);
+      return;
+    }
+
+    apiService.getStockDetails(hbid)
+      .then((res) => {
+        if (!Array.isArray(res.data)) {
+          setError("Invalid response from server");
+          return;
+        }
+
+        setBloodStock(res.data);
+        setError("");
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Failed to load blood stock");
+        setBloodStock([]);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <div className="hb-card">
       <h2 className="hb-title">Blood Stock</h2>
 
-      <table className="hb-table">
-        <thead>
-          <tr>
-            <th>Blood Type</th>
-            <th>Units Available</th>
-            <th>Critical Level</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {stockData.map((s, i) => (
-            <tr key={i}>
-              <td>{s.type}</td>
-              <td>{s.units}</td>
-              <td>
-                <span
-                  className={
-                    s.status === "URGENT"
-                      ? "hb-status urgent"
-                      : "hb-status ok"
-                  }
-                >
-                  {s.status}
-                </span>
-              </td>
+      {loading ? (
+        <p style={{ textAlign: "center" }}>Loading...</p>
+      ) : error ? (
+        <p style={{ textAlign: "center", color: "red" }}>{error}</p>
+      ) : bloodStock.length === 0 ? (
+        <p style={{ textAlign: "center" }}>No blood stock available</p>
+      ) : (
+        <table className="hb-table">
+          <thead>
+            <tr>
+              <th>Blood Component</th>
+              <th>Quantity (ml)</th>
+              <th>Expiry Date</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <button className="hb-btn">Order Blood</button>
+          </thead>
+          <tbody>
+            {bloodStock.map((b, index) => (
+              <tr key={index}>
+                <td>{b.bcName}</td>
+                <td>{b.ml}</td>
+                <td>
+                  {b.expiryDate
+                    ? new Date(b.expiryDate).toLocaleDateString("en-GB")
+                    : "-"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import "./Style.css";
-
-// export default function BloodStock() {
-//   const [stockData, setStockData] = useState([]);
-
-//   useEffect(() => {
-//     axios
-//       .get("http://localhost:8080/api/request")
-//       .then((res) => {
-//         setStockData(res.data);
-//       })
-//       .catch((err) => {
-//         console.error("Error fetching blood stock", err);
-//       });
-//   }, []);
-
-//   return (
-//     <div className="hb-card">
-//       <h2 className="hb-title">Blood Stock</h2>
-
-//       <table className="hb-table">
-//         <thead>
-//           <tr>
-//             <th>Blood Type</th>
-//             <th>Units Available</th>
-//             <th>Critical Level</th>
-//           </tr>
-//         </thead>
-
-//         <tbody>
-//           {stockData.map((s, i) => (
-//             <tr key={i}>
-//               <td>{s.type}</td>
-//               <td>{s.units}</td>
-//               <td>
-//                 <span
-//                   className={
-//                     s.status === "URGENT"
-//                       ? "hb-status urgent"
-//                       : "hb-status ok"
-//                   }
-//                 >
-//                   {s.status}
-//                 </span>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-
-//       <button className="hb-btn">Order Blood</button>
-//     </div>
-//   );
-// }

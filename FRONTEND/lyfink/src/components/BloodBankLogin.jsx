@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { loginUser } from "../services/UserLogin";
+import authService from "../services/authService";
 import { useNavigate } from "react-router-dom";
 
 export default function BloodBankLogin() {
@@ -9,27 +9,23 @@ export default function BloodBankLogin() {
   // ✅ State Variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // ✅ Login Handler
+  // ✅ Login Handler with JWT
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    const loginData = {
-      email,
-      password,
-    };
+    setError("");
+    setLoading(true);
 
     try {
-      // ✅ Call Backend Login API
-      const response = await loginUser(loginData);
+      // ✅ Call JWT-based Login API
+      const response = await authService.login(email, password);
 
-      console.log("Login Response:", response.data);
-
-      // ✅ Store Session
-      localStorage.setItem("user", JSON.stringify(response.data));
+      console.log("Login Response:", response);
 
       // ✅ Convert rid properly
-      const rid = Number(response.data.rid);
+      const rid = Number(response.rid);
 
       // ✅ Debug Check
       alert("Logged in Successfully! Role ID = " + rid);
@@ -51,8 +47,9 @@ export default function BloodBankLogin() {
 
     } catch (error) {
       console.error("Login Error:", error);
-
-      alert("Invalid Email or Password!");
+      setError(typeof error === 'string' ? error : "Invalid Email or Password!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,7 +68,7 @@ export default function BloodBankLogin() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: linear-gradient( #e60000);
+          background: linear-gradient(135deg, #E3F2FD 0%, #F0F4F8 100%);
           padding: 20px;
         }
 
@@ -81,11 +78,11 @@ export default function BloodBankLogin() {
           border-radius: 30px;
           overflow: hidden;
           background-color: white;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .left-section {
-          background: linear-gradient(to right,  #e60000, #8b0000);
+          background: linear-gradient(160deg, #42A5F5 0%, #5C6BC0 50%, #66BB6A 100%);
           color: white;
           padding: 2rem;
         }
@@ -106,7 +103,7 @@ export default function BloodBankLogin() {
         }
 
         .right-section {
-          background-color: #fafafa;
+          background-color: #FAFCFE;
           padding: 3rem;
           display: flex;
           align-items: center;
@@ -114,28 +111,50 @@ export default function BloodBankLogin() {
 
         .signin-title {
           font-weight: bold;
-          color: #e63946;
+          color: #42A5F5;
         }
 
         .login-btn {
           width: 100%;
-          background-color: #e63946;
+          background: linear-gradient(135deg, #42A5F5 0%, #5C6BC0 100%);
           border: none;
-          border-radius: 8px;
+          border-radius: 10px;
           font-size: 18px;
           font-weight: 600;
           padding: 12px;
           color: white;
+          box-shadow: 0 4px 12px rgba(66, 165, 245, 0.25);
+          transition: all 0.3s ease;
         }
 
         .login-btn:hover {
-          background-color: #d62839;
+          background: linear-gradient(135deg, #2196F3 0%, #5C6BC0 100%);
+          box-shadow: 0 6px 16px rgba(66, 165, 245, 0.35);
+          transform: translateY(-2px);
         }
 
         .register-link {
-          color: #e63946;
+          color: #42A5F5;
           font-weight: 600;
           text-decoration: none;
+        }
+
+        .register-link:hover {
+          color: #2196F3;
+          text-decoration: underline;
+        }
+
+        /* Form control focus states */
+        .form-control:focus,
+        .form-select:focus {
+          border-color: #42A5F5;
+          box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.15);
+        }
+
+        /* Labels */
+        .form-label {
+          color: #546E7A;
+          font-weight: 500;
         }
       `}</style>
 
@@ -162,6 +181,13 @@ export default function BloodBankLogin() {
 
                 <h2 className="signin-title mb-4">Sign In</h2>
 
+                {/* Error Message */}
+                {error && (
+                  <div className="alert alert-danger" role="alert">
+                    {error}
+                  </div>
+                )}
+
                 {/* Login Form */}
                 <form onSubmit={handleLogin}>
 
@@ -175,6 +201,7 @@ export default function BloodBankLogin() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      disabled={loading}
                     />
                   </div>
 
@@ -188,12 +215,13 @@ export default function BloodBankLogin() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
+                      disabled={loading}
                     />
                   </div>
 
                   {/* Button */}
-                  <button type="submit" className="login-btn mb-4">
-                    Login
+                  <button type="submit" className="login-btn mb-4" disabled={loading}>
+                    {loading ? 'Logging in...' : 'Login'}
                   </button>
 
                   {/* Register Link */}

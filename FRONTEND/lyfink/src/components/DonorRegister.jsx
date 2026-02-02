@@ -4,8 +4,9 @@ import { registerUser } from "../services/UserService";
 import { useNavigate } from "react-router-dom";
 
 
+
 export default function BloodBankRegister() {
-  
+
   const navigate = useNavigate();
 
 
@@ -19,7 +20,7 @@ export default function BloodBankRegister() {
     address: "",
     stateid: "",
     cityid: "",
-    rid: "",
+    rid: 2,
     security_question: "",
     security_answer: "",
 
@@ -34,7 +35,7 @@ export default function BloodBankRegister() {
     // ✅ Admin HB Fields
     hb_name: "",
     hb_email: "",
-    hb_password:"",
+    hb_password: "",
     hb_phno: "",
     reg_no: "",
     gst_no: "",
@@ -73,7 +74,7 @@ export default function BloodBankRegister() {
   }, []);
 
   const roles = [
-    
+
     { id: 2, name: "Donor" },
     { id: 3, name: "Hospital/Bloodbank" }
   ];
@@ -118,7 +119,9 @@ export default function BloodBankRegister() {
       lastname: formData.lastname,
       email: formData.email,
       password: formData.password,
-      mobno: formData.mobno,
+      // Handle mobile number: Remove spaces/dashes, then convert to Number. Handle potential NaN.
+      mobno: formData.mobno ? Number(formData.mobno.toString().replace(/\D/g, '')) || 0 : 0,
+      mobNo: formData.mobno ? Number(formData.mobno.toString().replace(/\D/g, '')) || 0 : 0, // Duplicate to ensure backend match
       address: formData.address,
 
       rid: Number(formData.rid),
@@ -143,16 +146,16 @@ export default function BloodBankRegister() {
 
     // ✅ Hospital/BloodBank Details
     if (Number(formData.rid) === 3) {
-  userPayload.hbDetails = {
-    hb_name: formData.hb_name,
-    hb_email: formData.hb_email,
-    hb_password: formData.hb_password,
-    hb_phno: formData.hb_phno,
-    reg_no: formData.reg_no,
-    gst_no: formData.gst_no,
-    type: formData.type
-  };
-}
+      userPayload.hbDetails = {
+        hb_name: formData.hb_name,
+        hb_email: formData.hb_email,
+        hb_password: formData.hb_password,
+        hb_phno: formData.hb_phno,
+        reg_no: formData.reg_no,
+        gst_no: formData.gst_no,
+        type: formData.type
+      };
+    }
 
 
     console.log("Sending Payload:", userPayload);
@@ -177,66 +180,116 @@ export default function BloodBankRegister() {
         rel="stylesheet"
       />
 
-      {/* ✅ Old CSS Styling */}
+      {/* ✅ Softer, More Pleasant Blue Color Scheme */}
       <style>{`
-        .register-container {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient( #e60000);
-          padding: 20px;
-        }
+  .register-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .register-card {
-          max-width: 1200px;
-          width: 100%;
-          background-color: #fff;
-          border-radius: 25px;
-          box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-          overflow: hidden;
-          display: flex;
-          height: 90vh;
-        }
+    /* Soft, pleasant pastel blue background */
+    background: linear-gradient(135deg, #E3F2FD 0%, #F0F4F8 100%);
+    padding: 20px;
+  }
 
-        .left-section {
-          background: linear-gradient(to right, #e60000, #8b0000);
-          color: white;
-          padding: 2.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-        }
+  .register-card {
+    max-width: 1200px;
+    width: 100%;
 
-        .right-section {
-          background-color: #fafafa;
-          padding: 2.5rem;
-          overflow-y: auto;
-        }
+    /* Pure white card for clean medical look */
+    background-color: #FFFFFF;
 
-        .register-btn {
-          width: 100%;
-          background-color: #e63946;
-          border: none;
-          border-radius: 8px;
-          font-size: 17px;
-          font-weight: 600;
-          padding: 12px;
-          color: white;
-          margin-top: 1rem;
-        }
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    height: 90vh;
+  }
 
-        .register-btn:hover {
-          background-color: #d62839;
-        }
+  .left-section {
+    /* Softer, pleasant blue gradient - lighter and more eye-friendly */
+    background: linear-gradient(160deg, #42A5F5 0%, #5C6BC0 50%, #66BB6A 100%);
 
-        h4 {
-          margin-top: 15px;
-          font-weight: bold;
-        }
-      `}</style>
+    color: white;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .right-section {
+    /* Very light background for comfort */
+    background-color: #FAFCFE;
+
+    padding: 2.5rem;
+    overflow-y: auto;
+  }
+
+  .register-btn {
+    width: 100%;
+
+    /* Softer, pleasant blue button */
+    background: linear-gradient(135deg, #42A5F5 0%, #5C6BC0 100%);
+
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 12px;
+    color: white;
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(66, 165, 245, 0.25);
+
+    transition: all 0.3s ease;
+  }
+
+  .register-btn:hover {
+    /* Slightly darker but still pleasant hover */
+    background: linear-gradient(135deg, #2196F3 0%, #5C6BC0 100%);
+    box-shadow: 0 6px 16px rgba(66, 165, 245, 0.35);
+    transform: translateY(-2px);
+  }
+
+  h4 {
+    margin-top: 15px;
+    font-weight: bold;
+
+    /* Softer blue for headings */
+    color: #42A5F5;
+  }
+
+  h2.text-danger {
+    /* Pleasant medium blue */
+    color: #42A5F5 !important;
+  }
+
+  .text-success {
+    /* Softer teal/green for donor section */
+    color: #26A69A !important;
+  }
+
+  .text-primary {
+    /* Pleasant medium blue */
+    color: #5C6BC0 !important;
+  }
+
+  /* Form control focus states */
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #42A5F5;
+    box-shadow: 0 0 0 0.2rem rgba(66, 165, 245, 0.15);
+  }
+
+  /* Labels */
+  .form-label {
+    color: #546E7A;
+    font-weight: 500;
+  }
+`}</style>
+
 
       <div className="register-container">
         <div className="register-card">
@@ -265,24 +318,21 @@ export default function BloodBankRegister() {
             <form onSubmit={handleSubmit}>
               <div className="row">
 
-                {/* Role */}
+                {/* Role Fixed as Donor */}
                 <div className="col-12 mb-3">
-                  <label className="form-label">Register As</label>
-                  <select
-                    className="form-select"
-                    name="rid"
-                    value={formData.rid}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select Role</option>
-                    {roles.map((r) => (
-                      <option key={r.id} value={r.id}>
-                        {r.name}
-                      </option>
-                    ))}
-                  </select>
+                  <label className="form-label">Role</label>
+
+                  <input
+                    type="text"
+                    className="form-control"
+                    value="Donor"
+                    disabled
+                  />
+
+                  {/* Hidden field to always send rid=2 */}
+                  <input type="hidden" name="rid" value="2" />
                 </div>
+
 
                 {/* Common Fields */}
                 <div className="col-md-6 mb-3">
@@ -491,7 +541,7 @@ export default function BloodBankRegister() {
                         required
                       />
                     </div>
-                   
+
                     <div className="col-md-6 mb-3">
                       <label className="form-label">Password</label>
                       <input

@@ -20,10 +20,17 @@ public class UsersService {
     @Autowired BloodComponentRepository bloodComponentRepo;
     @Autowired HbDetailsRepository hbDetailsRepo;
 
+    @Autowired
+    private org.springframework.security.crypto.password.PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private com.example.demo.util.JwtUtil jwtUtil;
+
     // ===========================
     // ✅ REGISTER METHOD
     // ===========================
-    public Users register(RegisterRequest req) {
+    // ✅ REGISTER METHOD - Returns AuthResponse with Token
+    public Object register(RegisterRequest req) {
 
         // ✅ NEW: Fetch existing user first
         Users existingUser = userRepo.findByEmail(req.getEmail());
@@ -52,7 +59,8 @@ public class UsersService {
 
                 hb.setName(req.getHbDetails().getHb_name());
                 hb.setEmail(req.getHbDetails().getHb_email());
-                hb.setHb_password(req.getHbDetails().getHb_password());
+                // ✅ Encode Password
+                hb.setHb_password(passwordEncoder.encode(req.getHbDetails().getHb_password()));
                 hb.setPhone(req.getHbDetails().getHb_phno());
 
                 hb.setRegNo(req.getHbDetails().getReg_no());
@@ -63,12 +71,27 @@ public class UsersService {
                 hb.setUser(existingUser);
 
                 // ✅ Save ONLY in HB_DETAILS
-                hbDetailsRepo.save(hb);
+                HbDetails savedHb = hbDetailsRepo.save(hb);
 
                 System.out.println("✅ Hospital/BloodBank saved successfully!");
 
-                // ✅ Return existing user (No new insert in USERS)
-                return existingUser;
+                // ✅ GENERATE TOKEN FOR HOSPITAL somesh
+                // ✅ GENERATE TOKEN FOR HOSPITAL (With Claims)
+                Map<String, Object> claims = new HashMap<>();
+                claims.put("name", savedHb.getName());
+                claims.put("hbid", savedHb.getHbid());
+                claims.put("rid", 3);
+
+                String token = jwtUtil.generateToken(savedHb.getEmail(), claims);
+
+                return new com.example.demo.DTO.AuthResponse(
+                    token, 
+                    0, // userid irrelevant for direct HB login usually
+                    savedHb.getName(), // hbname as username
+                    savedHb.getEmail(), 
+                    3, // Role 3 = Hospital
+                    savedHb.getHbid()
+                );
             }
         }
 
@@ -85,7 +108,8 @@ public class UsersService {
         user.setFirstname(req.getFirstname());
         user.setLastname(req.getLastname());
         user.setEmail(req.getEmail());
-        user.setPassword(req.getPassword());
+        // ✅ Encode Password
+        user.setPassword(passwordEncoder.encode(req.getPassword()));
         user.setMobno(req.getMobno());
         user.setAddress(req.getAddress());
 
@@ -119,40 +143,75 @@ public class UsersService {
         // ✅ Save Admin/Donor in USERS
         Users savedUser = userRepo.save(user);
 
-        // ===========================
-        // ✅ Admin Registers Hospital (rid=1)
-        // ===========================
-        if (req.getRid() == 3 && req.getHbDetails() != null) {
+        // ✅ GENERATE TOKEN FOR USER (Donor/Admin)
+        // ✅ GENERATE TOKEN FOR USER (Donor/Admin) (With Claims)
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("name", savedUser.getFirstname());
+        claims.put("userid", savedUser.getUserid());
+        claims.put("rid", savedUser.getRole().getRid());
 
-            HbDetails hb = new HbDetails();
+        String token = jwtUtil.generateToken(savedUser.getEmail(), claims);
 
-            hb.setName(req.getHbDetails().getHb_name());
-            hb.setEmail(req.getHbDetails().getHb_email());
-            hb.setHb_password(req.getHbDetails().getHb_password());
-            hb.setPhone(req.getHbDetails().getHb_phno());
+        return new com.example.demo.DTO.AuthResponse(
+            token, 
+            savedUser.getUserid(), 
+            savedUser.getFirstname(), // firstname as username
+            savedUser.getEmail(), 
+            savedUser.getRole().getRid(), 
+            0 // hbid is 0 for regular users
+        );
+    }
 
-            hb.setRegNo(req.getHbDetails().getReg_no());
-            hb.setGstNo(req.getHbDetails().getGst_no());
-            hb.setType(req.getHbDetails().getType());
+    // ===========================
+    // ✅ NEW: Separate Hospital Registration (Admin Only)
+    // ===========================
+    public Object registerHospital(com.example.demo.DTO.HbDetails reqHb, String adminEmail) {
 
-            // ✅ Link hospital → admin
-            hb.setUser(savedUser);
-
-            // ✅ Save ONLY in HB_DETAILS
-            hbDetailsRepo.save(hb);
-
-            System.out.println("✅ Hospital/BloodBank saved successfully!");
+        Users adminUser = userRepo.findByEmail(adminEmail);
+        if (adminUser == null) {
+            throw new RuntimeException("Admin User (Email: " + adminEmail + ") Not Found!");
         }
 
-        return savedUser;
+        HbDetails hb = new HbDetails();
+
+        hb.setName(reqHb.getHb_name());
+        hb.setEmail(reqHb.getHb_email());
+        hb.setHb_password(passwordEncoder.encode(reqHb.getHb_password()));
+        hb.setPhone(reqHb.getHb_phno());
+
+        hb.setRegNo(reqHb.getReg_no());
+        hb.setGstNo(reqHb.getGst_no());
+        hb.setType(reqHb.getType());
+
+        // ✅ Link hospital → Admin User
+        hb.setUser(adminUser);
+
+        HbDetails savedHb = hbDetailsRepo.save(hb);
+
+        System.out.println("✅ Hospital/BloodBank registered by Admin: " + adminUser.getEmail());
+
+        // ✅ Generate Token
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("name", savedHb.getName());
+        claims.put("hbid", savedHb.getHbid());
+        claims.put("rid", 3);
+
+        String token = jwtUtil.generateToken(savedHb.getEmail(), claims);
+
+        return new com.example.demo.DTO.AuthResponse(
+            token, 
+            0, 
+            savedHb.getName(), 
+            savedHb.getEmail(), 
+            3, 
+            savedHb.getHbid()
+        );
     }
 
  // ===========================
  //  LOGIN METHOD (FINAL WORKING)
  // ===========================
  public Object loginUser(String email, String password) {
-
-     Map<String, Object> result = new HashMap<>();
 
      // ===========================
      // Check USERS table first
@@ -161,15 +220,26 @@ public class UsersService {
 
      if (user != null) {
 
-         if (!user.getPassword().equals(password)) {
+         if (!passwordEncoder.matches(password, user.getPassword())) {
              throw new RuntimeException("Invalid Password!");
          }
 
-         result.put("userid", user.getUserid());
-         result.put("email", user.getEmail());
-         result.put("rid", user.getRole().getRid());
+          // ✅ GENERATE TOKEN (With Claims)
+          Map<String, Object> claims = new HashMap<>();
+          claims.put("name", user.getFirstname());
+          claims.put("userid", user.getUserid());
+          claims.put("rid", user.getRole().getRid());
 
-         return result;
+          String token = jwtUtil.generateToken(user.getEmail(), claims);
+          
+          return new com.example.demo.DTO.AuthResponse(
+              token, 
+              user.getUserid(), 
+              user.getFirstname(), // firstname as username
+              user.getEmail(), 
+              user.getRole().getRid(), 
+              0 // hbid is 0 for regular users
+          );
      }
 
      // ===========================
@@ -179,17 +249,27 @@ public class UsersService {
 
      if (hb != null) {
 
-         if (!hb.getHb_password().equals(password)) {
+         if (!passwordEncoder.matches(password, hb.getHb_password())) {
              throw new RuntimeException("Invalid Password!");
          }
+         
+         // ✅ GENERATE TOKEN (With Claims)
+         Map<String, Object> claims = new HashMap<>();
+         claims.put("name", hb.getName());
+         claims.put("hbid", hb.getHbid());
+         claims.put("rid", 3);
 
-         result.put("hbid", hb.getHbid());
-         result.put("email", hb.getEmail());
-
+         String token = jwtUtil.generateToken(hb.getEmail(), claims);
+         
          // ✅ Hospital/BloodBank role fixed rid=3
-         result.put("rid", 3);
-
-         return result;
+         return new com.example.demo.DTO.AuthResponse(
+             token, 
+             0, // userid might be 0 or irrelevant if logged in as hospital
+             hb.getName(),
+             hb.getEmail(), 
+             3, 
+             hb.getHbid()
+         );
      }
 
      // ===========================
@@ -197,5 +277,4 @@ public class UsersService {
      // ===========================
      throw new RuntimeException("User Not Found!");
  }
-
 }

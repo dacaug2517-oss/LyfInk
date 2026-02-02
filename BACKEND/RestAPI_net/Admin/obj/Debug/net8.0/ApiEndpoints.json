@@ -40,6 +40,107 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Admin.Controllers.DonationCampController",
+    "Method": "CreateCamp",
+    "RelativePath": "api/DonationCamp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "camp",
+        "Type": "Admin.Models.DonationCamp",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Admin.Controllers.DonationCampController",
+    "Method": "DeleteCamp",
+    "RelativePath": "api/DonationCamp/{cid}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cid",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Admin.Controllers.DonationCampController",
+    "Method": "GetCampsByAdmin",
+    "RelativePath": "api/DonationCamp/admin/{uid}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uid",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Admin.Controllers.DonationCampController",
+    "Method": "GetCampsByHospital",
+    "RelativePath": "api/DonationCamp/hospital/{hbid}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hbid",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Admin.Controllers.HbDetailsController",
+    "Method": "DeleteHospital",
+    "RelativePath": "api/HbDetails/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Admin.Controllers.HbDetailsController",
+    "Method": "UpdateHospital",
+    "RelativePath": "api/HbDetails/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "hospital",
+        "Type": "Admin.Models.HbDetail",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Admin.Controllers.HbDetailsController",
     "Method": "GetHospitalsByAdmin",
     "RelativePath": "api/HbDetails/admin/{adminId}",

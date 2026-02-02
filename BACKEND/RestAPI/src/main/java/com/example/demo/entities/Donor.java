@@ -24,6 +24,7 @@ public class Donor {
 
     @OneToOne
     @JoinColumn(name="uid")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Users user;
 
 }
