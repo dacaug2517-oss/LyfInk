@@ -13,6 +13,10 @@ import RegisterHospital from "./components/Admin/RegisterHospital";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Unauthorized from "./components/Unauthorized";
 
+/* ✅ Add These */
+import Eligibility from "./components/Donor/DonorEligibility";
+import BloodRequests from "./components/Donor/BloodRequests";
+
 function App() {
   return (
     <Routes>
@@ -52,12 +56,32 @@ function App() {
         }
       />
 
-      {/* ✅ Register Hospital Page - Protected for Admin only */}
+      {/* Register Hospital Page - Admin only */}
       <Route
         path="/register-hospital"
         element={
           <ProtectedRoute allowedRoles={[1]}>
             <RegisterHospital />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* ✅ Eligibility Page */}
+      <Route
+        path="/eligibility"
+        element={
+          <ProtectedRoute allowedRoles={[2]}>
+            <Eligibility />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* ✅ Blood Requests Page */}
+      <Route
+        path="/blood-requests"
+        element={
+          <ProtectedRoute allowedRoles={[2]}>
+            <BloodRequests />
           </ProtectedRoute>
         }
       />

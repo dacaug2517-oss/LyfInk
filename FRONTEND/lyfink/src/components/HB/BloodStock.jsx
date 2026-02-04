@@ -10,18 +10,23 @@ export default function BloodStock() {
 
   useEffect(() => {
     const user = authService.getCurrentUser();
-    console.log("userid from localStorage:", Number(user["hbid"]));
+    console.log("userid from localStorage:", user);
 
-    const hbid = Number(user["hbid"]);
+    const hbid = Number(user?.hbid);
 
-    if (!!hbid) {
-      setError("Stock not Available");
+    // ✅ Fix: Only return if HBID is NOT present
+    if (!hbid) {
+      setError("Hospital ID not found");
       setLoading(false);
       return;
     }
 
-    apiService.getStockDetails(hbid)
+    // ✅ Call API correctly
+    apiService
+      .getStockDetails(hbid)
       .then((res) => {
+        console.log("Stock API Response:", res.data);
+
         if (!Array.isArray(res.data)) {
           setError("Invalid response from server");
           return;
@@ -31,7 +36,7 @@ export default function BloodStock() {
         setError("");
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Stock Fetch Error:", err);
         setError("Failed to load blood stock");
         setBloodStock([]);
       })

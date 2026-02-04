@@ -6,7 +6,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
-import com.example.demo.entities.Users; // Assuming User entity has role/email
 
 import java.security.Key;
 import java.util.Date;

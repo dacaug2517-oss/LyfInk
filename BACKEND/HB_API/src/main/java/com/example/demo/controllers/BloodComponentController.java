@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.entities.BloodComponent;
 import com.example.demo.services.BloodComponentService;
 
+
 @RestController
 @RequestMapping("/api/bloodcomponents")
-@CrossOrigin("*")
 public class BloodComponentController {
+
+
 
     @Autowired
     private BloodComponentService service;

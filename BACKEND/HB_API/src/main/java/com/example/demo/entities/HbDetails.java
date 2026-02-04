@@ -1,4 +1,3 @@
-
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
@@ -15,29 +14,36 @@ public class HbDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int hbid;
 
+    // ✅ hb_name column
     @Column(name="hb_name")
-    private String name;
+    private String hb_name;
 
+    // ✅ hb_email column
     @Column(name="hb_email")
-    private String email;
+    private String hb_email;
 
+    // ✅ hb_password column
     @Column(name="hb_password")
-    private String password;
+    private String hb_password;
 
+    // ✅ hb_phno column
     @Column(name="hb_phno")
-    private String phone;
+    private String hb_phno;
 
+    // ✅ reg_no column
     @Column(name="reg_no")
-    private String regNo;
+    private String reg_no;
 
+    // ✅ gst_no column
     @Column(name="gst_no")
-    private String gstNo;
+    private String gst_no;
 
+    // ✅ type column
+    @Column(name="type")
     private String type;
 
-    // ✅ Admin who registered this hospital
+    // ✅ uid column (Admin/User who registered hospital)
     @ManyToOne
     @JoinColumn(name="uid")
     private Users user;
 }
-

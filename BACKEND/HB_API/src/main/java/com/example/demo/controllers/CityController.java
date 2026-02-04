@@ -10,7 +10,6 @@ import com.example.demo.services.CityService;
 
 @RestController
 @RequestMapping("/api/cities")
-@CrossOrigin(origins = "*")
 public class CityController {
 
     @Autowired

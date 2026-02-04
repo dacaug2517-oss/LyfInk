@@ -14,4 +14,5 @@ public class AuthResponse {
     private String email;
     private int rid;
     private int hbid;
+    private int brid;
 }

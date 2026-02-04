@@ -1,62 +1,66 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\",
+  "WorkspaceRootPath": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\models\\hbdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\hbdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\models\\donationcamp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\donationcamp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\controllers\\donationcampcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\donationcampcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\models\\p17bloodbankcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\p17bloodbankcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\controllers\\hbdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\hbdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\controllers\\bloodstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\bloodstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\models\\bloodstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\bloodstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\views\\admin\\hbregisterviewmodel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:views\\admin\\hbregisterviewmodel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|e:\\lyfink\\lyfink\\backend\\restapi_net\\admin\\admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\models\\p17bloodbankcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\p17bloodbankcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\models\\hbdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\hbdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\models\\donationcamp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\donationcamp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\controllers\\donationcampcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\donationcampcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\controllers\\hbdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\hbdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\controllers\\bloodstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\bloodstockcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\models\\bloodstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:models\\bloodstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|c:\\users\\manav\\onedrive\\desktop\\project\\lyfink\\backend\\restapi_net\\admin\\views\\admin\\hbregisterviewmodel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E2A530AB-1D42-4725-8A9B-CA1D24370E7C}|Admin.csproj|solutionrelative:views\\admin\\hbregisterviewmodel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,11 +78,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Admin.csproj",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Admin.csproj",
+              "RelativeDocumentMoniker": "Admin.csproj",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Admin.csproj",
+              "RelativeToolTip": "Admin.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-02-02T08:12:21.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T07:52:28.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "DonationCamp.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\DonationCamp.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\DonationCamp.cs",
               "RelativeDocumentMoniker": "Models\\DonationCamp.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\DonationCamp.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\DonationCamp.cs",
               "RelativeToolTip": "Models\\DonationCamp.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -86,11 +114,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "DonationCampController.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\DonationCampController.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\DonationCampController.cs",
               "RelativeDocumentMoniker": "Controllers\\DonationCampController.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\DonationCampController.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\DonationCampController.cs",
               "RelativeToolTip": "Controllers\\DonationCampController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -98,48 +126,48 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "appsettings.Development.json",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.Development.json",
               "RelativeToolTip": "appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-01T08:31:53.655Z"
+              "WhenOpened": "2026-02-01T08:31:53.655Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "P17BloodbankContext.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\P17BloodbankContext.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\P17BloodbankContext.cs",
               "RelativeDocumentMoniker": "Models\\P17BloodbankContext.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\P17BloodbankContext.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\P17BloodbankContext.cs",
               "RelativeToolTip": "Models\\P17BloodbankContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAAIoBAAAAAAAAAAAswKABAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-01T08:24:13.848Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "HbDetail.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\HbDetail.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\HbDetail.cs",
               "RelativeDocumentMoniker": "Models\\HbDetail.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\HbDetail.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\HbDetail.cs",
               "RelativeToolTip": "Models\\HbDetail.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAIwB4AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-29T17:39:40.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-29T17:39:40.376Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "HbdetailsController.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\HbdetailsController.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\HbdetailsController.cs",
               "RelativeDocumentMoniker": "Controllers\\HbdetailsController.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\HbdetailsController.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\HbdetailsController.cs",
               "RelativeToolTip": "Controllers\\HbdetailsController.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAkwBsAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -147,11 +175,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "BloodStockController.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\BloodStockController.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\BloodStockController.cs",
               "RelativeDocumentMoniker": "Controllers\\BloodStockController.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\BloodStockController.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\BloodStockController.cs",
               "RelativeToolTip": "Controllers\\BloodStockController.cs",
               "ViewState": "AgIAAAcAAAAAAAAAAAAmwBIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -159,23 +187,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "launchSettings.json",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Properties\\launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Properties\\launchSettings.json",
               "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-01-29T15:45:32.123Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "UserController.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\UserController.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\UserController.cs",
               "RelativeToolTip": "Controllers\\UserController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -183,11 +211,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "ReportController.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\ReportController.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\ReportController.cs",
               "RelativeDocumentMoniker": "Controllers\\ReportController.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\ReportController.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Controllers\\ReportController.cs",
               "RelativeToolTip": "Controllers\\ReportController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -195,11 +223,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "BloodStock.cs",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\BloodStock.cs",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\BloodStock.cs",
               "RelativeDocumentMoniker": "Models\\BloodStock.cs",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\BloodStock.cs",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Models\\BloodStock.cs",
               "RelativeToolTip": "Models\\BloodStock.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -207,11 +235,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "HbRegisterViewModel.cshtml",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Views\\Admin\\HbRegisterViewModel.cshtml",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Views\\Admin\\HbRegisterViewModel.cshtml",
               "RelativeDocumentMoniker": "Views\\Admin\\HbRegisterViewModel.cshtml",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Views\\Admin\\HbRegisterViewModel.cshtml",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Views\\Admin\\HbRegisterViewModel.cshtml",
               "RelativeToolTip": "Views\\Admin\\HbRegisterViewModel.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -219,27 +247,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.json",
+              "ToolTip": "C:\\Users\\manav\\OneDrive\\Desktop\\Project\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-01-27T04:59:33.71Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Admin.csproj",
-              "DocumentMoniker": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Admin.csproj",
-              "RelativeDocumentMoniker": "Admin.csproj",
-              "ToolTip": "E:\\LyfInk\\LyfInk\\BACKEND\\RestAPI_net\\Admin\\Admin.csproj",
-              "RelativeToolTip": "Admin.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-27T04:52:02.528Z"
             }
           ]
         }

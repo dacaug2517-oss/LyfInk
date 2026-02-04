@@ -5,6 +5,16 @@ import { authServiceAxios, hbServiceAxios, donorServiceAxios, publicAuthAxios } 
 // Port 8081: Hospital/Blood Bank Service
 // Port 8082: Donor Service
 
+import axios from "axios";
+
+/* ================= HB SERVICE (8081) ================= */
+
+
+/* ================= RESPONSE SERVICE (8083) ================= */
+const responseServiceAxios = axios.create({
+  baseURL: "http://localhost:8083",
+});
+
 const apiService = {
     // ============ Blood Components (Public - No Auth Required) ============
     getBloodComponents: () => {
@@ -71,6 +81,17 @@ const apiService = {
     getRequestsExcludingUser: (userid) => {
         return hbServiceAxios.get(`/api/request/all-except/${userid}`);
     },
+
+    // ✅ Full Blood Request Details API
+    getFullBloodRequestDetails: (id) => {
+        return hbServiceAxios.get(`/api/bloodrequest/full-details/${id}`);
+    },
+
+    // ✅ Accept / Reject Request Response
+    sendBloodResponse: (data) => {
+        return responseServiceAxios.post("/api/response/data", data);
+    },
+
 
     // ============ Blood Responses (HB Service - 8081) ============
     getRequestsFromOtherHospitals: (userid) => {

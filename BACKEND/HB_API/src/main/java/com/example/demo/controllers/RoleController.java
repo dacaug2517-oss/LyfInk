@@ -13,7 +13,6 @@ import com.example.demo.repositories.RoleRepository;
 
 @RestController
 	@RequestMapping("/api/roles")
-	@CrossOrigin("*")
 	public class RoleController {
 
 	    @Autowired

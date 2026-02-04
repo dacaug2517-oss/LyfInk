@@ -7,7 +7,6 @@ import com.example.demo.DTO.DonationCampRequestDTO;
 import com.example.demo.entities.*;
 import com.example.demo.services.DonationCampService;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/donation-camp")
 public class DonationCampController {

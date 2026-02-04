@@ -1,300 +1,466 @@
-// import React, { useState } from "react";
-// import { Heart, Droplet } from "lucide-react";
-
-// export default function DonorProfile() {
-//   const [profile] = useState({
-//     fullName: "John Doe",
-//     bloodGroup: "O+",
-//     contactNumber: "+1-123-456-7890",
-//     email: "john.doe@email.com",
-//     address: "123 Main St, Springfield, USA",
-//     totalDonations: 3,
-//     lastDonation: "+",
-//   });
-
-//   return (
-//     <div
-//       style={{
-//         background: "white",
-//         borderRadius: "14px",
-//         padding: "30px",
-//         boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-//       }}
-//     >
-//       <h1
-//         style={{
-//           color: "#7a4a2e",
-//           fontSize: "32px",
-//           marginBottom: "30px",
-//           fontWeight: "bold",
-//         }}
-//       >
-//         {profile.fullName}!
-//       </h1>
-
-//       <div style={{ display: "flex", gap: "40px" }}>
-//         {/* Profile Info */}
-//         <div style={{ flex: 1 }}>
-//           <h2
-//             style={{
-//               color: "#5d4037",
-//               fontSize: "20px",
-//               marginBottom: "20px",
-//               fontWeight: "bold",
-//             }}
-//           >
-//             Donor Profile
-//           </h2>
-
-//           <p><b>Full Name:</b> {profile.fullName}</p>
-//           <p><b>Blood Group:</b> {profile.bloodGroup}</p>
-//           <p><b>Contact Number:</b> {profile.contactNumber}</p>
-//           <p><b>Email:</b> {profile.email}</p>
-//           <p><b>Address:</b> {profile.address}</p>
-
-//           {/* Stats */}
-//           <div
-//             style={{
-//               display: "flex",
-//               gap: "25px",
-//               marginTop: "20px",
-//               alignItems: "center",
-//             }}
-//           >
-//             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-//               <Heart size={20} color="#d32f2f" fill="#d32f2f" />
-//               <span>
-//                 Total Donations:{" "}
-//                 <strong style={{ color: "#d32f2f", fontSize: "18px" }}>
-//                   {profile.totalDonations}
-//                 </strong>
-//               </span>
-//             </div>
-
-//             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-//               <Droplet size={20} color="#d32f2f" fill="#d32f2f" />
-//               <span>
-//                 Last Donation:{" "}
-//                 <strong style={{ color: "#d32f2f" }}>
-//                   {profile.lastDonation}
-//                 </strong>
-//               </span>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Blood Drop */}
-//         <div
-//           style={{
-//             width: "220px",
-//             display: "flex",
-//             flexDirection: "column",
-//             alignItems: "center",
-//             justifyContent: "center",
-//           }}
-//         >
-//           <div
-//             style={{
-//               position: "relative",
-//               width: "140px",
-//               height: "170px",
-//               background: "linear-gradient(135deg, #ffebee, #ffcdd2)",
-//               borderRadius: "70px 70px 15px 15px",
-//               display: "flex",
-//               alignItems: "center",
-//               justifyContent: "center",
-//               boxShadow: "0 6px 14px rgba(211,47,47,0.25)",
-//             }}
-//           >
-//             <Droplet size={70} color="#d32f2f" fill="#d32f2f" />
-//           </div>
-
-//           <button
-//             style={{
-//               marginTop: "20px",
-//               padding: "12px 28px",
-//               background: "linear-gradient(135deg, #ff6b6b, #ee5a6f)",
-//               color: "white",
-//               border: "none",
-//               borderRadius: "10px",
-//               cursor: "pointer",
-//               fontSize: "15px",
-//               fontWeight: "600",
-//               boxShadow: "0 4px 10px rgba(238,90,111,0.4)",
-//             }}
-//           >
-//             Edit Profile
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-
-// export default function DonorProfile({ setPage }) {
-
-//   const [donor, setDonor] = useState(null);
-//   const [stats, setStats] = useState({ total: 0, last: "-" });
-
-//   // ✅ TEMP: logged-in user id
-//   const userId = 1; // 🔴 CHANGE THIS TO A VALID USER ID FROM DB
-
-//   useEffect(() => {
-//     // fetch donor profile
-//     axios
-//       .get(`http://localhost:8080/api/donor/profile/${userId}`)
-//       .then(res => {
-//         console.log("DONOR RESPONSE:", res.data);
-//         setDonor(res.data);
-//       })
-//       .catch(err => {
-//         console.error("Donor API error", err);
-//       });
-
-//     // fetch donation history
-//     axios
-//       .get(`http://localhost:8080/api/donor/history/${userId}`)
-//       .then(res => {
-//         const list = res.data || [];
-//         setStats({
-//           total: list.length,
-//           last:
-//             list.length > 0
-//               ? new Date(list[0].donationDate).toLocaleDateString()
-//               : "-"
-//         });
-//       })
-//       .catch(err => console.error("History API error", err));
-//   }, []);
-
-//   if (!donor) {
-//     return <div style={{ padding: 30 }}>Loading donor profile...</div>;
-//   }
-
-//   return (
-//     <div
-//       style={{
-//         background: "#fff",
-//         borderRadius: 18,
-//         padding: 30,
-//         maxWidth: 1000,
-//         boxShadow: "0 20px 45px rgba(0,0,0,0.15)",
-//       }}
-//     >
-//       <h1 style={{ color: "#8b4513" }}>
-//         {donor.uid.firstname} {donor.uid.lastname}!
-//       </h1>
-
-//       <h3>Donor Profile</h3>
-
-//       <p><b>Full Name:</b> {donor.uid.firstname} {donor.uid.lastname}</p>
-//       <p><b>Blood Group:</b> {donor.bcid.bc_name}</p>
-//       <p><b>Contact Number:</b> {donor.uid.mobno}</p>
-//       <p><b>Email:</b> {donor.uid.email}</p>
-//       <p><b>Gender:</b> {donor.gender}</p>
-//       <p><b>Medical History:</b> {donor.medical_history || "None"}</p>
-
-//       <hr />
-
-//       <div style={{ display: "flex", gap: 30 }}>
-//         <div>❤️ <b>Total Donations:</b> {stats.total}</div>
-//         <div>🩸 <b>Last Donation:</b> {stats.last}</div>
-//       </div>
-
-//       <button
-//       onClick={() => setPage("edit-profile")}
-//         style={{
-//           marginTop: 20,
-//           padding: "10px 22px",
-//           background: "#ff5a5f",
-//           color: "#fff",
-//           border: "none",
-//           borderRadius: 8,
-//           cursor: "pointer",
-//         }}
-//       >
-//         Edit Profile
-//       </button>
-//     </div>
-//   );
-// }
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import EditDonorProfile from "./EditDonorProfile";
-import DonationCamp from "./DonationCamps";
+import { User, Mail, Droplet, Calendar, Heart, Activity, Edit } from "lucide-react";
 
 export default function DonorProfile({ setPage }) {
   const [donor, setDonor] = useState(null);
   const [stats, setStats] = useState({ total: 0, last: "-" });
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState("donor-profile"); // profile or edit
+  const [currentPage, setCurrentPage] = useState("donor-profile");
 
-  const userId = 1; // TEMP: replace with actual logged-in user id
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const userId = storedUser?.userid;
 
-  // Fetch donor profile
   const fetchDonor = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/donor/profile/${userId}`);
+      const res = await axios.get(
+        `http://localhost:8083/api/donor/profile/${userId}`
+      );
 
-      // If API returns a list, pick the first donor
       const donorData = Array.isArray(res.data) ? res.data[0] : res.data;
 
       setDonor(donorData || null);
     } catch (err) {
-      console.error("Donor API error", err);
+      console.error("❌ Donor Profile API Error:", err);
       setDonor(null);
     } finally {
       setLoading(false);
     }
   };
 
-  // Fetch donation history
   const fetchHistory = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/donor/history/${userId}`);
+      const res = await axios.get(
+        `http://localhost:8083/api/donor/history/${userId}`
+      );
+
       const list = res.data || [];
+
       setStats({
         total: list.length,
-        last: list.length > 0 ? new Date(list[0].donationDate).toLocaleDateString() : "-",
+        last:
+          list.length > 0
+            ? new Date(list[0].donatedDate).toLocaleDateString()
+            : "-",
       });
     } catch (err) {
-      console.error("History API error", err);
+      console.error("❌ Donation History API Error:", err);
       setStats({ total: 0, last: "-" });
     }
   };
 
   useEffect(() => {
-    fetchDonor();
-    fetchHistory();
-  }, []);
+    if (userId) {
+      fetchDonor();
+      fetchHistory();
+    }
+  }, [userId]);
 
-  // Show edit page
+  if (!userId) {
+    return (
+      <div style={{ padding: 30, color: "red" }}>
+        ❌ User not logged in. Please login again.
+      </div>
+    );
+  }
+
   if (currentPage === "edit-profile") {
     return (
       <EditDonorProfile
         userId={userId}
         onProfileUpdated={() => {
-          fetchDonor(); // refresh profile
-          fetchHistory(); // refresh stats
-          setCurrentPage("donor-profile"); // go back to profile
+          fetchDonor();
+          fetchHistory();
+          setCurrentPage("donor-profile");
         }}
         onCancel={() => setCurrentPage("donor-profile")}
       />
     );
   }
 
-  // Loading state
   if (loading) {
-    return <div style={{ padding: 30 }}>Loading donor profile...</div>;
+    return (
+      <div style={styles.loadingContainer}>
+        <div style={styles.spinner}></div>
+        <p style={styles.loadingText}>Loading donor profile...</p>
+      </div>
+    );
+  }
+
+  if (!donor) {
+    return (
+      <div style={styles.errorContainer}>
+        <Droplet size={60} color="#ccc" />
+        <p style={styles.errorText}>No donor profile found</p>
+        <p style={styles.errorSubtext}>Please complete your profile first.</p>
+      </div>
+    );
   }
 
   return (
+    <div style={styles.container}>
+      {/* Header Card */}
+      <div style={styles.headerCard}>
+        <div style={styles.avatarSection}>
+          <div style={styles.avatar}>
+            <User size={50} color="#42A5F5" />
+          </div>
+          <div style={styles.headerInfo}>
+            <h2 style={styles.donorName}>
+              {donor.uid?.firstname || "-"} {donor.uid?.lastname || "-"}
+            </h2>
+            <p style={styles.donorEmail}>
+              <Mail size={16} style={{ marginRight: 6 }} />
+              {donor.uid?.email || "-"}
+            </p>
+          </div>
+        </div>
+        <button onClick={() => setCurrentPage("edit-profile")} style={styles.editButton}>
+          <Edit size={18} />
+          <span>Update Profile</span>
+        </button>
+      </div>
 
-    <DonationCamp />
+      {/* Stats Cards Row */}
+      <div style={styles.statsRow}>
+        <div style={styles.statCard}>
+          <div style={styles.statIconWrapper}>
+            <Heart size={30} color="#c1121f" />
+          </div>
+          <div style={styles.statContent}>
+            <p style={styles.statLabel}>Total Donations</p>
+            <h3 style={styles.statValue}>{stats.total}</h3>
+          </div>
+        </div>
 
+        <div style={styles.statCard}>
+          <div style={styles.statIconWrapper}>
+            <Calendar size={30} color="#42A5F5" />
+          </div>
+          <div style={styles.statContent}>
+            <p style={styles.statLabel}>Last Donation</p>
+            <h3 style={styles.statValue}>{stats.last}</h3>
+          </div>
+        </div>
+
+        <div style={styles.statCard}>
+          <div style={styles.statIconWrapper}>
+            <Droplet size={30} color="#2e7d32" />
+          </div>
+          <div style={styles.statContent}>
+            <p style={styles.statLabel}>Blood Group</p>
+            <h3 style={styles.statValue}>{donor.bcid?.bc_name || "-"}</h3>
+          </div>
+        </div>
+      </div>
+
+      {/* Personal Information Card */}
+      <div style={styles.infoCard}>
+        <div style={styles.cardHeader}>
+          <h3 style={styles.cardTitle}>
+            <User size={22} style={{ marginRight: 8 }} />
+            Personal Information
+          </h3>
+        </div>
+        
+        <div style={styles.infoGrid}>
+          <div style={styles.infoItem}>
+            <div style={styles.infoLabel}>
+              <User size={18} color="#42A5F5" />
+              <span>Full Name</span>
+            </div>
+            <div style={styles.infoValue}>
+              {donor.uid?.firstname || "-"} {donor.uid?.lastname || "-"}
+            </div>
+          </div>
+
+          <div style={styles.infoItem}>
+            <div style={styles.infoLabel}>
+              <Mail size={18} color="#42A5F5" />
+              <span>Email Address</span>
+            </div>
+            <div style={styles.infoValue}>{donor.uid?.email || "-"}</div>
+          </div>
+
+          <div style={styles.infoItem}>
+            <div style={styles.infoLabel}>
+              <Droplet size={18} color="#c1121f" />
+              <span>Blood Group</span>
+            </div>
+            <div style={styles.infoValue}>
+              <span style={styles.bloodGroupBadge}>{donor.bcid?.bc_name || "-"}</span>
+            </div>
+          </div>
+
+          <div style={styles.infoItem}>
+            <div style={styles.infoLabel}>
+              <User size={18} color="#42A5F5" />
+              <span>Gender</span>
+            </div>
+            <div style={styles.infoValue}>{donor.gender || "-"}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Medical History Card */}
+      <div style={styles.infoCard}>
+        <div style={styles.cardHeader}>
+          <h3 style={styles.cardTitle}>
+            <Activity size={22} style={{ marginRight: 8 }} />
+            Medical History
+          </h3>
+        </div>
+        
+        <div style={styles.medicalContent}>
+          <p style={styles.medicalText}>
+            {donor.medical_history || "No medical history recorded"}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
+
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
+    maxWidth: "1100px",
+  },
+
+  loadingContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "60px 20px",
+  },
+
+  spinner: {
+    border: "4px solid #f3f3f3",
+    borderTop: "4px solid #42A5F5",
+    borderRadius: "50%",
+    width: "50px",
+    height: "50px",
+    animation: "spin 1s linear infinite",
+  },
+
+  loadingText: {
+    marginTop: "20px",
+    color: "#666",
+    fontSize: "16px",
+  },
+
+  errorContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "60px 20px",
+    textAlign: "center",
+  },
+
+  errorText: {
+    marginTop: "20px",
+    fontSize: "18px",
+    color: "#666",
+    fontWeight: "500",
+  },
+
+  errorSubtext: {
+    fontSize: "14px",
+    color: "#999",
+    marginTop: "5px",
+  },
+
+  // Header Card
+  headerCard: {
+    background: "linear-gradient(135deg, #42A5F5 0%, #5C6BC0 100%)",
+    borderRadius: "18px",
+    padding: "30px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    boxShadow: "0 8px 24px rgba(66, 165, 245, 0.3)",
+    color: "#fff",
+  },
+
+  avatarSection: {
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+  },
+
+  avatar: {
+    width: "90px",
+    height: "90px",
+    borderRadius: "50%",
+    background: "#fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+  },
+
+  headerInfo: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "5px",
+  },
+
+  donorName: {
+    margin: 0,
+    fontSize: "28px",
+    fontWeight: "bold",
+    color: "#fff",
+  },
+
+  donorEmail: {
+    margin: 0,
+    fontSize: "16px",
+    color: "rgba(255, 255, 255, 0.9)",
+    display: "flex",
+    alignItems: "center",
+  },
+
+  editButton: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    background: "#fff",
+    color: "#42A5F5",
+    border: "none",
+    padding: "12px 24px",
+    borderRadius: "10px",
+    fontSize: "15px",
+    fontWeight: "600",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+  },
+
+  // Stats Cards
+  statsRow: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "20px",
+  },
+
+  statCard: {
+    background: "#fff",
+    borderRadius: "16px",
+    padding: "25px",
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
+    transition: "all 0.3s ease",
+    cursor: "pointer",
+  },
+
+  statIconWrapper: {
+    width: "60px",
+    height: "60px",
+    borderRadius: "12px",
+    background: "linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  statContent: {
+    flex: 1,
+  },
+
+  statLabel: {
+    margin: 0,
+    fontSize: "14px",
+    color: "#666",
+    fontWeight: "500",
+    marginBottom: "5px",
+  },
+
+  statValue: {
+    margin: 0,
+    fontSize: "26px",
+    fontWeight: "bold",
+    color: "#333",
+  },
+
+  // Info Cards
+  infoCard: {
+    background: "#fff",
+    borderRadius: "16px",
+    padding: "25px",
+    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.08)",
+  },
+
+  cardHeader: {
+    marginBottom: "20px",
+    paddingBottom: "15px",
+    borderBottom: "2px solid #f0f0f0",
+  },
+
+  cardTitle: {
+    margin: 0,
+    fontSize: "20px",
+    fontWeight: "bold",
+    color: "#333",
+    display: "flex",
+    alignItems: "center",
+  },
+
+  infoGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: "20px",
+  },
+
+  infoItem: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+  },
+
+  infoLabel: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    fontSize: "14px",
+    color: "#666",
+    fontWeight: "500",
+  },
+
+  infoValue: {
+    fontSize: "16px",
+    color: "#333",
+    fontWeight: "500",
+    paddingLeft: "26px",
+  },
+
+  bloodGroupBadge: {
+    display: "inline-block",
+    background: "linear-gradient(135deg, #c1121f 0%, #a00f1a 100%)",
+    color: "#fff",
+    padding: "6px 16px",
+    borderRadius: "8px",
+    fontSize: "16px",
+    fontWeight: "bold",
+  },
+
+  // Medical History
+  medicalContent: {
+    background: "#f8f9fa",
+    borderRadius: "12px",
+    padding: "20px",
+  },
+
+  medicalText: {
+    margin: 0,
+    fontSize: "15px",
+    color: "#555",
+    lineHeight: "1.6",
+  },
+};

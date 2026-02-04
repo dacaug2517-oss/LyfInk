@@ -12,11 +12,42 @@ export default function BloodBankLogin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ✅ VALIDATION FUNCTIONS ADDED (Nothing Else Changed)
+  const validateEmail = (email) => {
+    const emailRegex =
+      /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|outlook\.com)$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex =
+      /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
   // ✅ Login Handler with JWT
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
+
+    // ✅ VALIDATIONS ADDED HERE (Before API Call)
+
+    // Email Validation
+    if (!validateEmail(email)) {
+      setError("Email must end with @gmail.com, @yahoo.com or @outlook.com");
+      setLoading(false);
+      return;
+    }
+
+    // Password Validation
+    if (!validatePassword(password)) {
+      setError(
+        "Password must be 8 characters long and include 1 Capital letter, 1 Number and 1 Special character"
+      );
+      setLoading(false);
+      return;
+    }
 
     try {
       // ✅ Call JWT-based Login API

@@ -11,7 +11,6 @@ import com.example.demo.services.StateService;
 
 @RestController
 @RequestMapping("/api/states")
-@CrossOrigin(origins = "*")
 public class StateController {
 
     @Autowired

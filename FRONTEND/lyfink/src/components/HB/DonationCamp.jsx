@@ -23,6 +23,8 @@ export default function DonationCampRegister() {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
 
+  const [errors, setErrors] = useState({});
+
   useEffect(() => {
     // Auto-fill HBID from logged in user
     const user = authService.getCurrentUser();
@@ -47,6 +49,31 @@ export default function DonationCampRegister() {
     }
   }, [formData.stateid]);
 
+  const validateField = (name, value) => {
+    let error = "";
+
+    if (name === "date") {
+      const today = new Date().toISOString().split("T")[0];
+      if (value < today) {
+        error = "Date cannot be in the past";
+      }
+    }
+
+    if (name === "from_time" || name === "to_time") {
+      if (value) {
+        const [hh, mm] = value.split(":").map(Number);
+        const minutes = hh * 60 + mm;
+        const minTime = 8 * 60;
+        const maxTime = 20 * 60;
+        if (minutes < minTime || minutes > maxTime) {
+          error = "Time must be between 08:00 AM and 08:00 PM";
+        }
+      }
+    }
+
+    return error;
+  };
+
   /* ================= HANDLE CHANGE ================= */
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,14 +83,31 @@ export default function DonationCampRegister() {
       [name]: value,
       ...(name === "stateid" ? { cityid: "" } : {})
     }));
+
+    setErrors(prevErrors => ({
+      ...prevErrors,
+      [name]: validateField(name, value)
+    }));
   };
 
   /* ================= SUBMIT FORM ================= */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let newErrors = {};
+    Object.keys(formData).forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
+    });
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
     const payload = {
-      hbid: Number(formData.hbid),
+      hbid: JSON.parse(localStorage.getItem("user"))?.hbid,
       camp_name: formData.camp_name,
       venue: formData.venue,
       date: formData.date,
@@ -97,18 +141,8 @@ export default function DonationCampRegister() {
           <form onSubmit={handleSubmit} className="hb-form">
             <div className="row">
 
-              {/* HBID */}
-              <div className="col-md-6">
-                <label className="form-label">Hospital / Blood Bank ID</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  name="hbid"
-                  value={formData.hbid}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+              {/* Hidden HBID Field */}
+              <input type="hidden" name="hbid" value={formData.hbid} />
 
               {/* Camp Name */}
               <div className="col-md-6">
@@ -139,12 +173,16 @@ export default function DonationCampRegister() {
                 <label className="form-label">Date</label>
                 <input
                   type="date"
-                  className="form-control"
+                  className={`form-control ${errors.date ? "is-invalid" : ""}`}
                   name="date"
                   value={formData.date}
                   onChange={handleChange}
                   required
+                  min={new Date().toISOString().split("T")[0]}
                 />
+                {errors.date && (
+                  <small className="text-danger">{errors.date}</small>
+                )}
               </div>
 
               {/* From Time */}
@@ -152,12 +190,17 @@ export default function DonationCampRegister() {
                 <label className="form-label">From Time</label>
                 <input
                   type="time"
-                  className="form-control"
+                  className={`form-control ${errors.from_time ? "is-invalid" : ""}`}
                   name="from_time"
                   value={formData.from_time}
                   onChange={handleChange}
                   required
+                  min="08:00"
+                  max="20:00"
                 />
+                {errors.from_time && (
+                  <small className="text-danger">{errors.from_time}</small>
+                )}
               </div>
 
               {/* To Time */}
@@ -165,12 +208,17 @@ export default function DonationCampRegister() {
                 <label className="form-label">To Time</label>
                 <input
                   type="time"
-                  className="form-control"
+                  className={`form-control ${errors.to_time ? "is-invalid" : ""}`}
                   name="to_time"
                   value={formData.to_time}
                   onChange={handleChange}
                   required
+                  min="08:00"
+                  max="20:00"
                 />
+                {errors.to_time && (
+                  <small className="text-danger">{errors.to_time}</small>
+                )}
               </div>
 
               {/* Contact Person */}

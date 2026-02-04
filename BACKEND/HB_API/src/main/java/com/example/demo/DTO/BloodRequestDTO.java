@@ -9,12 +9,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // ✅ All-args constructor (optional)
 public class BloodRequestDTO {
 
-    private Integer userid=28;
-    private Integer bcid;
-    private Integer stateid;
-    private Integer cityid;
-    private Integer quantity;
-    private String requiredby; // format: "yyyy-MM-dd"
+    private int bcid;
+    private int quantity;
+    private String urgency;
     private String purpose;
+    private String requiredby;
     private String contact_no;
+
+    private int stateid;
+    private int cityid;
+
+    // ✅ Manually passed
+    private int userid;
+    private int hbid;
+
+    // getters/setters
 }
+

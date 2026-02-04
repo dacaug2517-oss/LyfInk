@@ -29,6 +29,8 @@ const authService = {
         password,
       });
 
+      console.log("Login Response:", response.data);
+
       const { token, userid, email: userEmail, rid, hbid, username } = response.data;
 
       // Store token and user info in localStorage

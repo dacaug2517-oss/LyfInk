@@ -33,6 +33,7 @@ public class HbDetailsController {
 
             // ✅ Attach full user entity
             hb.setUser(adminUser);
+            hb.setBrid(user.getBrid());
         }
 
         // ✅ Now Save Hospital

@@ -46,7 +46,18 @@ export default function AdminDashboard() {
         .get(`http://localhost:5048/api/DonationCamp/admin/${storedUser.userid}`)
         .then((res) => {
           console.log("Dashboard Camps:", res.data);
-          setCamps(res.data);
+
+          // ✅ Filter Only Upcoming Camps (Remove Old Camps)
+          const today = new Date();
+
+          const upcomingCamps = res.data
+            .filter((camp) => {
+              const campDate = new Date(camp.date);
+              return campDate >= today;
+            })
+            .sort((a, b) => new Date(a.date) - new Date(b.date)); // ✅ Sort by nearest date
+
+          setCamps(upcomingCamps);
           setLoadingCamps(false);
         })
         .catch((err) => {
@@ -78,19 +89,12 @@ export default function AdminDashboard() {
           </h1>
         </div>
 
-
-
         <div className="admin-icons">
           <button className="register-btn" onClick={handleRegister}>
             + Register
           </button>
 
           <LogoutButton className="btn btn-sm btn-danger mx-3" />
-
-          <div className="notif-icon">
-            <Bell size={20} />
-            <span className="notif-badge">3</span>
-          </div>
         </div>
       </header>
 
@@ -125,17 +129,6 @@ export default function AdminDashboard() {
           >
             <BarChart3 size={18} /> Reports
           </button>
-
-          <div className="sidebar-bottom">
-            <button
-              className={
-                activePage === "settings" ? "nav-btn active" : "nav-btn"
-              }
-              onClick={() => setActivePage("settings")}
-            >
-              <Settings size={18} /> Settings
-            </button>
-          </div>
         </aside>
 
         {/* Content */}
@@ -176,7 +169,7 @@ export default function AdminDashboard() {
                 </div>
               ) : (
                 <p style={{ marginTop: "10px" }}>
-                  No Donation Camps Available
+                  No Upcoming Donation Camps Available
                 </p>
               )}
             </div>
@@ -190,30 +183,6 @@ export default function AdminDashboard() {
 
           {/* Reports */}
           {activePage === "reports" && <ReportAnalysis />}
-
-          {/* Settings */}
-          {activePage === "settings" && (
-            <div className="settings-page">
-              <h2>⚙ Admin Settings</h2>
-
-              <div className="profile-box">
-                <p>
-                  <b>Name:</b>{" "}
-                  {adminData
-                    ? adminData.firstname + " " + adminData.lastname
-                    : "Loading..."}
-                </p>
-
-                <p>
-                  <b>Email:</b> {adminData ? adminData.email : "Loading..."}
-                </p>
-
-                <button className="logout-btn" onClick={handleLogout}>
-                  Logout
-                </button>
-              </div>
-            </div>
-          )}
         </section>
       </div>
     </div>

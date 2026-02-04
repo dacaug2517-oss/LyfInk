@@ -10,7 +10,6 @@ import com.example.demo.services.BloodStockService;
 
 @RestController
 @RequestMapping("/api/request")
-@CrossOrigin(origins = "http://localhost:3000")
 public class BloodStockController {
 
     @Autowired
